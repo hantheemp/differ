@@ -1,1 +1,10 @@
+com\muratkagan\differ\diff\model\LineChange$1.class
 com\muratkagan\differ\DifferApplication.class
+com\muratkagan\differ\core\identity\ProjectScanner.class
+com\muratkagan\differ\diff\LineDiffService.class
+com\muratkagan\differ\diff\model\FileDiffResult.class
+com\muratkagan\differ\core\identity\FileIdentity.class
+com\muratkagan\differ\diff\model\LineChange.class
+com\muratkagan\differ\util\FileHasher.class
+com\muratkagan\differ\diff\LineDiffService$1.class
+com\muratkagan\differ\diff\model\LineChangeType.class
