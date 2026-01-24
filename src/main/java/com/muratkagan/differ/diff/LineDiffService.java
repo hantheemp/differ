@@ -54,10 +54,17 @@ public class LineDiffService {
 
 					String newLine = i < target.getLines().size() ? target.getLines().get(i) : null;
 
-					result.addChange(new LineChange(LineChangeType.CHANGE, oldLine != null ? sourcePos + i : null,
-							newLine != null ? targetPos + i : null, oldLine, newLine));
+					if (oldLine != null && newLine != null) {
+						result.addChange(
+								new LineChange(LineChangeType.CHANGE, sourcePos + i, targetPos + i, oldLine, newLine));
+					} else if (oldLine != null) {
+						result.addChange(new LineChange(LineChangeType.DELETE, sourcePos + i, null, oldLine, null));
+					} else {
+						result.addChange(new LineChange(LineChangeType.INSERT, null, targetPos + i, null, newLine));
+					}
 				}
 				break;
+
 			default:
 				break;
 

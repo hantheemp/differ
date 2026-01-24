@@ -7,4 +7,5 @@ com\muratkagan\differ\core\identity\FileIdentity.class
 com\muratkagan\differ\diff\model\LineChange.class
 com\muratkagan\differ\util\FileHasher.class
 com\muratkagan\differ\diff\LineDiffService$1.class
+com\muratkagan\differ\core\ignore\IgnoreRules.class
 com\muratkagan\differ\diff\model\LineChangeType.class

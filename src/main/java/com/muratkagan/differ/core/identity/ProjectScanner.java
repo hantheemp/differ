@@ -5,6 +5,8 @@ import java.nio.file.*;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.muratkagan.differ.core.ignore.IgnoreRules;
+
 public class ProjectScanner {
 
 	public static Map<String, Path> scanProject(Path projectRoot) throws IOException {
@@ -12,6 +14,12 @@ public class ProjectScanner {
 
 		Files.walk(projectRoot).filter(Files::isRegularFile).forEach(file -> {
 			String relativePath = projectRoot.relativize(file).toString().replace("\\", "/");
+
+			if (IgnoreRules.shouldIgnore(Paths.get(relativePath))) {
+
+				return;
+			}
+
 			fileMap.put(relativePath, file);
 		});
 

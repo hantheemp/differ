@@ -1,0 +1,136 @@
+# .differignore
+# Specify files and directories to ignore when running differ
+# Lines starting with # are comments
+# Blank lines are ignored
+
+# ===================================
+# Build outputs and compiled files
+# ===================================
+target/
+build/
+out/
+bin/
+dist/
+*.class
+*.jar
+*.war
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+# ===================================
+# Dependency directories
+# ===================================
+node_modules/
+vendor/
+bower_components/
+.pnp/
+.yarn/
+
+# ===================================
+# IDE and Editor files
+# ===================================
+.idea/
+.vscode/
+.eclipse/
+.settings/
+*.iml
+*.ipr
+*.iws
+.project
+.classpath
+.factorypath
+.springBeans
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# ===================================
+# Version Control
+# ===================================
+.git/
+.svn/
+.hg/
+.bzr/
+
+# ===================================
+# Logs and temporary files
+# ===================================
+*.log
+*.tmp
+*.temp
+*.bak
+*.cache
+*.pid
+*.seed
+*.log.*
+logs/
+temp/
+tmp/
+
+# ===================================
+# OS generated files
+# ===================================
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# ===================================
+# Environment and configuration
+# ===================================
+.env
+.env.local
+.env.*.local
+*.secret
+secrets/
+config/secrets.json
+
+# ===================================
+# Package manager files
+# ===================================
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+composer.lock
+
+# ===================================
+# Test coverage
+# ===================================
+coverage/
+.nyc_output/
+*.cover
+.coverage
+htmlcov/
+.pytest_cache/
+
+# ===================================
+# Documentation builds
+# ===================================
+site/
+docs/_build/
+*.pdf
+
+# ===================================
+# Database files
+# ===================================
+*.db
+*.sqlite
+*.sqlite3
+*.h2.db
+
+# ===================================
+# Custom project ignores
+# ===================================
+# Add your project-specific ignores below
+# Example:
+# data/
+# uploads/
+# private/
