@@ -1,29 +1,71 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+
 	<modelVersion>4.0.0</modelVersion>
+
 	<groupId>com.muratkagan.differ</groupId>
 	<artifactId>differ</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+
 	<name>Differ</name>
-	<description>Differ is a standalone Java desktop application that enables
+	<description>
+		Differ is a standalone Java desktop application that enables
 		detailed comparison of two project snapshots.
 		It scans directory structures, classifies file changes, and presents
-		line-level differences in a clear, side-by-side view. The tool operates
-		fully offline and is intended for controlled or legacy environments
-		where traditional version control systems cannot be used.</description>
+		line-level differences in a clear view.
+		The tool operates fully offline.
+	</description>
+
 	<properties>
 		<java.version>25</java.version>
+		<javafx.version>21.0.2</javafx.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
+
 	<dependencies>
 		<dependency>
 			<groupId>io.github.java-diff-utils</groupId>
 			<artifactId>java-diff-utils</artifactId>
 			<version>4.12</version>
 		</dependency>
+		<dependency>
+			<groupId>org.openjfx</groupId>
+			<artifactId>javafx-controls</artifactId>
+			<version>${javafx.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.openjfx</groupId>
+			<artifactId>javafx-graphics</artifactId>
+			<version>${javafx.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.openjfx</groupId>
+			<artifactId>javafx-base</artifactId>
+			<version>${javafx.version}</version>
+		</dependency>
 	</dependencies>
+
 	<build>
 		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.12.1</version>
+				<configuration>
+					<release>${java.version}</release>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.openjfx</groupId>
+				<artifactId>javafx-maven-plugin</artifactId>
+				<version>0.0.8</version>
+				<configuration>
+					<mainClass>
+						com.muratkagan.differ.DifferApplication
+					</mainClass>
+				</configuration>
+			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-shade-plugin</artifactId>
@@ -40,7 +82,8 @@
 								<transformer
 									implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
 									<mainClass>
-										com.muratkagan.differ.DifferApplication</mainClass>
+										com.muratkagan.differ.DifferApplication
+									</mainClass>
 								</transformer>
 							</transformers>
 						</configuration>
