@@ -1,0 +1,31 @@
+.root {
+	-fx-font-family: "Inter", "Segoe UI", sans-serif;
+	-fx-background-color: #101922;
+}
+
+/* Empty Editor View */
+.empty-editor {
+	-fx-background-color: #1e1e1e;
+}
+
+.empty-editor .empty-text {
+	-fx-text-fill: #94a3b8;
+	-fx-font-size: 14px;
+}
+
+/* Empty Sidebar View */
+.empty-sidebar {
+	-fx-background-color: #192633;
+	-fx-padding: 48px 24px;
+}
+
+.empty-sidebar-title {
+	-fx-text-fill: #cbd5e1;
+	-fx-font-size: 16px;
+	-fx-font-weight: 600;
+}
+
+.empty-sidebar-subtitle {
+	-fx-text-fill: #94a3b8;
+	-fx-font-size: 13px;
+}

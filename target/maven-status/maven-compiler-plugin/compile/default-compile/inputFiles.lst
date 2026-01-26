@@ -13,9 +13,12 @@ C:\Users\temel\eclipse-workspace\differ\src\main\java\com\muratkagan\differ\ui\c
 C:\Users\temel\eclipse-workspace\differ\src\main\java\com\muratkagan\differ\ui\controller\SidebarController.java
 C:\Users\temel\eclipse-workspace\differ\src\main\java\com\muratkagan\differ\ui\state\EditorState.java
 C:\Users\temel\eclipse-workspace\differ\src\main\java\com\muratkagan\differ\ui\state\SidebarState.java
+C:\Users\temel\eclipse-workspace\differ\src\main\java\com\muratkagan\differ\ui\state\ViewMode.java
 C:\Users\temel\eclipse-workspace\differ\src\main\java\com\muratkagan\differ\ui\theme\Theme.java
 C:\Users\temel\eclipse-workspace\differ\src\main\java\com\muratkagan\differ\ui\view\DiffView.java
+C:\Users\temel\eclipse-workspace\differ\src\main\java\com\muratkagan\differ\ui\view\DiffViewMode.java
 C:\Users\temel\eclipse-workspace\differ\src\main\java\com\muratkagan\differ\ui\view\EmptyEditorView.java
 C:\Users\temel\eclipse-workspace\differ\src\main\java\com\muratkagan\differ\ui\view\EmptySidebarView.java
+C:\Users\temel\eclipse-workspace\differ\src\main\java\com\muratkagan\differ\ui\view\FileEntryModel.java
 C:\Users\temel\eclipse-workspace\differ\src\main\java\com\muratkagan\differ\ui\view\SidebarListView.java
 C:\Users\temel\eclipse-workspace\differ\src\main\java\com\muratkagan\differ\util\FileHasher.java
