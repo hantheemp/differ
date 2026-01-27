@@ -9,6 +9,7 @@ public class MainView {
 	private final BorderPane root;
 	private final SplitPane splitPane;
 
+	private Node toolbar;
 	private Node sidebar;
 	private Node editor;
 
@@ -18,6 +19,11 @@ public class MainView {
 
 		splitPane.setDividerPositions(0.25);
 		root.setCenter(splitPane);
+	}
+
+	public void setToolbar(Node toolbar) {
+		this.toolbar = toolbar;
+		root.setTop(toolbar);
 	}
 
 	public void setSidebar(Node sidebar) {

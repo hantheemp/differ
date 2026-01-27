@@ -14,7 +14,9 @@ import com.muratkagan.differ.ui.app.MainView;
 import com.muratkagan.differ.ui.model.FileEntryModel;
 import com.muratkagan.differ.ui.state.SidebarState;
 import com.muratkagan.differ.ui.view.EmptySidebarView;
-import com.muratkagan.differ.ui.view.SidebarListView;
+import com.muratkagan.differ.ui.view.SidebarTreeView;
+import com.muratkagan.differ.ui.view.ToolbarView;
+import com.muratkagan.differ.ui.view.SidebarHeader;
 
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
@@ -41,6 +43,35 @@ public class SidebarController {
 	}
 
 	public void initialize() {
+		// Create and setup toolbar
+		ToolbarView toolbar = new ToolbarView();
+		toolbar.setOnBaselineBrowse(this::selectBaselineDirectory);
+		toolbar.setOnTargetBrowse(this::selectTargetDirectory);
+		toolbar.setOnCompare(() -> {
+			if (baselineDirectory != null && targetDirectory != null) {
+				loadFileList();
+			}
+		});
+		
+		// Update toolbar when directories change
+		state.baselineDirectoryProperty().addListener((obs, oldVal, newVal) -> {
+			if (newVal != null) {
+				toolbar.setBaselinePath(newVal.toString());
+			} else {
+				toolbar.setBaselinePath("");
+			}
+		});
+		
+		state.targetDirectoryProperty().addListener((obs, oldVal, newVal) -> {
+			if (newVal != null) {
+				toolbar.setTargetPath(newVal.toString());
+			} else {
+				toolbar.setTargetPath("");
+			}
+		});
+		
+		mainView.setToolbar(toolbar.getRoot());
+		
 		Platform.runLater(this::showEmpty);
 	}
 
@@ -92,6 +123,9 @@ public class SidebarController {
 	private void loadFileList() {
 		try {
 			List<FileEntryModel> fileModels = new ArrayList<>();
+			int addedCount = 0;
+			int modifiedCount = 0;
+			int deletedCount = 0;
 
 			List<Path> baselineFiles = Files.walk(baselineDirectory).filter(Files::isRegularFile)
 					.collect(Collectors.toList());
@@ -103,8 +137,12 @@ public class SidebarController {
 				boolean isModified = false;
 				if (Files.exists(targetFile)) {
 					isModified = !filesAreEqual(baselineFile, targetFile);
+					if (isModified) {
+						modifiedCount++;
+					}
 				} else {
 					isModified = true;
+					deletedCount++;
 				}
 
 				fileModels.add(new FileEntryModel(relativePath.toString(), isModified));
@@ -119,6 +157,7 @@ public class SidebarController {
 
 				if (!Files.exists(baselineFile)) {
 					fileModels.add(new FileEntryModel(relativePath.toString(), true));
+					addedCount++;
 				}
 			}
 
@@ -126,11 +165,16 @@ public class SidebarController {
 				showEmpty();
 			} else {
 				ObservableList<FileEntryModel> items = FXCollections.observableArrayList(fileModels);
-				SidebarListView listView = new SidebarListView(items);
+				
+				// Create header with file counts
+				SidebarHeader header = new SidebarHeader();
+				header.setFileCounts(addedCount, modifiedCount, deletedCount);
+				
+				SidebarTreeView treeView = new SidebarTreeView(items, header);
 
-				listView.onSelectionChanged(this::showFileDiff);
+				treeView.onSelectionChanged(this::showFileDiff);
 
-				mainView.setSidebar(listView.getRoot());
+				mainView.setSidebar(treeView.getRoot());
 			}
 
 		} catch (IOException e) {
