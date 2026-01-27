@@ -1,35 +1,41 @@
 package com.muratkagan.differ.ui.state;
 
-import java.util.List;
-
-import com.muratkagan.differ.ui.view.FileEntryModel;
+import java.nio.file.Path;
 
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 
 public class SidebarState {
 
-	private final ObjectProperty<ViewMode> viewMode = new SimpleObjectProperty<>(ViewMode.EMPTY);
+	private final ObjectProperty<Path> baselineDirectory = new SimpleObjectProperty<>();
+	private final ObjectProperty<Path> targetDirectory = new SimpleObjectProperty<>();
 
-	private final ObservableList<FileEntryModel> files = FXCollections.observableArrayList();
-
-	public ObjectProperty<ViewMode> viewModeProperty() {
-		return viewMode;
+	public ObjectProperty<Path> baselineDirectoryProperty() {
+		return baselineDirectory;
 	}
 
-	public ObservableList<FileEntryModel> getFiles() {
-		return files;
+	public void setBaselineDirectory(Path path) {
+		baselineDirectory.set(path);
+	}
+
+	public Path getBaselineDirectory() {
+		return baselineDirectory.get();
+	}
+
+	public ObjectProperty<Path> targetDirectoryProperty() {
+		return targetDirectory;
+	}
+
+	public void setTargetDirectory(Path path) {
+		targetDirectory.set(path);
+	}
+
+	public Path getTargetDirectory() {
+		return targetDirectory.get();
 	}
 
 	public void showEmpty() {
-		viewMode.set(ViewMode.EMPTY);
-		files.clear();
-	}
-
-	public void showList(List<FileEntryModel> files2) {
-		viewMode.set(ViewMode.LIST);
-		files.setAll(files2);
+		baselineDirectory.set(null);
+		targetDirectory.set(null);
 	}
 }

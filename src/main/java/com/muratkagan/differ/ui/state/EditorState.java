@@ -1,39 +1,36 @@
 package com.muratkagan.differ.ui.state;
 
+import java.util.List;
+
+import com.muratkagan.differ.ui.model.DiffLine;
+
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 public class EditorState {
 
-	private final ObjectProperty<ViewMode> viewMode = new SimpleObjectProperty<ViewMode>(ViewMode.EMPTY);
+	private final ObjectProperty<ViewMode> viewMode = new SimpleObjectProperty<>(ViewMode.EMPTY);
 
-	private final StringProperty leftText = new SimpleStringProperty();
-	private final StringProperty rightText = new SimpleStringProperty();
+	private final ObservableList<DiffLine> diffLines = FXCollections.observableArrayList();
 
 	public ObjectProperty<ViewMode> viewModeProperty() {
 		return viewMode;
 	}
 
-	public StringProperty leftTextProperty() {
-		return leftText;
-	}
-
-	public StringProperty rightTextProperty() {
-		return rightText;
+	public ObservableList<DiffLine> getDiffLines() {
+		return diffLines;
 	}
 
 	public void clear() {
 		viewMode.set(ViewMode.EMPTY);
-		leftText.set(null);
-		rightText.set(null);
+		diffLines.clear();
 	}
 
-	public void showDiff(String left, String right) {
+	public void showDiff(List<DiffLine> lines) {
 		viewMode.set(ViewMode.DIFF);
-		leftText.set(left);
-		rightText.set(right);
+		diffLines.setAll(lines);
 	}
 
 }

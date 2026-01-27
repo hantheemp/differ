@@ -1,5 +1,9 @@
 package com.muratkagan.differ.ui.view;
 
+import java.util.function.Consumer;
+
+import com.muratkagan.differ.ui.model.FileEntryModel;
+
 import javafx.collections.ObservableList;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
@@ -23,9 +27,10 @@ public class SidebarListView {
 			protected void updateItem(FileEntryModel item, boolean empty) {
 				super.updateItem(item, empty);
 
+				getStyleClass().removeAll("file-modified", "file-unchanged");
+
 				if (empty || item == null) {
 					setText(null);
-					setStyle("");
 				} else {
 					setText(item.getPath());
 
@@ -41,10 +46,10 @@ public class SidebarListView {
 		listView.getStyleClass().add("sidebar-list");
 	}
 
-	public void onSelectionChanged(javafx.util.Callback<FileEntryModel, Void> handler) {
+	public void onSelectionChanged(Consumer<FileEntryModel> handler) {
 		listView.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> {
 			if (newVal != null) {
-				handler.call(newVal);
+				handler.accept(newVal);
 			}
 		});
 	}

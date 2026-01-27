@@ -17,11 +17,29 @@ public class LineChange {
 		this.targetLine = targetLine;
 	}
 
+	public LineChangeType getType() {
+		return type;
+	}
+
+	public Integer getSourceLineNo() {
+		return sourceLineNo;
+	}
+
+	public Integer getTargetLineNo() {
+		return targetLineNo;
+	}
+
+	public String getSourceLine() {
+		return sourceLine;
+	}
+
+	public String getTargetLine() {
+		return targetLine;
+	}
+
 	@Override
 	public String toString() {
-
 		switch (type) {
-
 		case INSERT:
 			return String.format("+ [%d] %s", targetLineNo + 1, targetLine);
 
@@ -36,5 +54,4 @@ public class LineChange {
 			return type.name();
 		}
 	}
-
 }

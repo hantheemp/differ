@@ -29,3 +29,26 @@
 	-fx-text-fill: #94a3b8;
 	-fx-font-size: 13px;
 }
+
+/* Diff Styles */
+
+.diff-root {
+	-fx-background-color: #1e1e1e;
+}
+
+.diff-line {
+	-fx-font-family: "JetBrains Mono", monospace;
+	-fx-font-size: 12px;
+}
+
+.diff-added {
+	-fx-text-fill: #98c379;
+}
+
+.diff-removed {
+	-fx-text-fill: #e06c75;
+}
+
+.diff-unchanged {
+	-fx-text-fill: #abb2bf;
+}

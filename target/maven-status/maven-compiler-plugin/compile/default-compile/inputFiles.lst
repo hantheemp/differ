@@ -11,6 +11,8 @@ C:\Users\temel\eclipse-workspace\differ\src\main\java\com\muratkagan\differ\ui\a
 C:\Users\temel\eclipse-workspace\differ\src\main\java\com\muratkagan\differ\ui\controller\AppController.java
 C:\Users\temel\eclipse-workspace\differ\src\main\java\com\muratkagan\differ\ui\controller\EditorController.java
 C:\Users\temel\eclipse-workspace\differ\src\main\java\com\muratkagan\differ\ui\controller\SidebarController.java
+C:\Users\temel\eclipse-workspace\differ\src\main\java\com\muratkagan\differ\ui\diff\DiffMapper.java
+C:\Users\temel\eclipse-workspace\differ\src\main\java\com\muratkagan\differ\ui\model\DiffLine.java
 C:\Users\temel\eclipse-workspace\differ\src\main\java\com\muratkagan\differ\ui\state\EditorState.java
 C:\Users\temel\eclipse-workspace\differ\src\main\java\com\muratkagan\differ\ui\state\SidebarState.java
 C:\Users\temel\eclipse-workspace\differ\src\main\java\com\muratkagan\differ\ui\state\ViewMode.java

@@ -1,55 +1,91 @@
 package com.muratkagan.differ.ui.view;
 
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextArea;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.muratkagan.differ.ui.model.DiffLine;
+
+import javafx.collections.FXCollections;
+import javafx.geometry.Insets;
+import javafx.scene.control.Label;
+import javafx.scene.control.ListCell;
+import javafx.scene.control.ListView;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.VBox;
 
 public class DiffView {
 
-	private final BorderPane root;
-	private final TextArea leftArea;
-	private final TextArea rightArea;
+	private final BorderPane root = new BorderPane();
+	private final ListView<String> leftListView = new ListView<>();
+	private final ListView<String> rightListView = new ListView<>();
 
 	public DiffView() {
-		this.leftArea = new TextArea();
-		this.rightArea = new TextArea();
-		this.root = new BorderPane();
-
 		configure();
 	}
 
 	private void configure() {
-		leftArea.setEditable(false);
-		rightArea.setEditable(false);
+		VBox leftPanel = createPanel("Original", leftListView, "diff-removed");
+		VBox rightPanel = createPanel("Modified", rightListView, "diff-added");
 
-		leftArea.getStyleClass().add("diff-left");
-		rightArea.getStyleClass().add("diff-right");
+		HBox splitView = new HBox(10);
+		HBox.setHgrow(leftPanel, Priority.ALWAYS);
+		HBox.setHgrow(rightPanel, Priority.ALWAYS);
+		splitView.getChildren().addAll(leftPanel, rightPanel);
+		splitView.setPadding(new Insets(10));
 
-		ScrollPane leftScroll = new ScrollPane(leftArea);
-		ScrollPane rightScroll = new ScrollPane(rightArea);
-
-		leftScroll.setFitToWidth(true);
-		rightScroll.setFitToWidth(true);
-
-		root.setLeft(leftScroll);
-		root.setCenter(rightScroll);
-
+		root.setCenter(splitView);
 		root.getStyleClass().add("diff-root");
 	}
 
-	public void render(String leftContent, String rightContent, DiffViewMode mode) {
-		if (mode == DiffViewMode.SIDE_BY_SIDE) {
-			root.setLeft(leftArea);
-			root.setCenter(rightArea);
+	private VBox createPanel(String title, ListView<String> listView, String styleClass) {
+		Label header = new Label(title);
+		header.getStyleClass().add("diff-header");
 
-			leftArea.setText(leftContent);
-			rightArea.setText(rightContent);
-		} else {
-			root.setLeft(null);
-			root.setCenter(leftArea);
+		listView.setCellFactory(lv -> new ListCell<>() {
+			@Override
+			protected void updateItem(String item, boolean empty) {
+				super.updateItem(item, empty);
+				if (empty || item == null) {
+					setText(null);
+					getStyleClass().clear();
+				} else {
+					setText(item);
+					getStyleClass().setAll("diff-line", styleClass);
+				}
+			}
+		});
 
-			leftArea.setText("<< OLD >>\n" + leftContent + "\n\n<< NEW >>\n" + rightContent);
+		VBox panel = new VBox(5);
+		VBox.setVgrow(listView, Priority.ALWAYS);
+		panel.getChildren().addAll(header, listView);
+		panel.getStyleClass().add("diff-panel");
+
+		return panel;
+	}
+
+	public void render(List<DiffLine> lines) {
+		List<String> leftLines = new ArrayList<>();
+		List<String> rightLines = new ArrayList<>();
+
+		for (DiffLine line : lines) {
+			switch (line.getType()) {
+			case REMOVED:
+				leftLines.add(line.getText());
+				break;
+			case ADDED:
+				rightLines.add(line.getText());
+				break;
+			case UNCHANGED:
+				leftLines.add(line.getText());
+				rightLines.add(line.getText());
+				break;
+			}
 		}
+
+		leftListView.setItems(FXCollections.observableArrayList(leftLines));
+		rightListView.setItems(FXCollections.observableArrayList(rightLines));
 	}
 
 	public BorderPane getRoot() {
