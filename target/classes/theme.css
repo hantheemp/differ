@@ -1,0 +1,402 @@
+.root {
+	-fx-font-family: "Inter", "Segoe UI", sans-serif;
+	-fx-background-color: #101922;
+}
+
+/* Empty Editor View */
+.empty-editor {
+	-fx-background-color: #1e1e1e;
+}
+
+.empty-editor .empty-text {
+	-fx-text-fill: #94a3b8;
+	-fx-font-size: 14px;
+}
+
+/* Empty Sidebar View */
+.empty-sidebar {
+	-fx-background-color: #192633;
+	-fx-padding: 48px 24px;
+}
+
+.empty-sidebar-title {
+	-fx-text-fill: #cbd5e1;
+	-fx-font-size: 16px;
+	-fx-font-weight: 600;
+}
+
+.empty-sidebar-subtitle {
+	-fx-text-fill: #94a3b8;
+	-fx-font-size: 13px;
+}
+
+/* Diff Styles */
+
+.diff-root {
+	-fx-background-color: #1e1e1e;
+}
+
+.diff-header {
+	-fx-background-color: #1e1e1e;
+	-fx-border-color: #324d67;
+	-fx-border-width: 0 0 1 0;
+}
+
+.diff-panel-title {
+	-fx-text-fill: #cbd5e1;
+	-fx-font-size: 13px;
+	-fx-font-weight: 600;
+}
+
+.diff-split-view {
+	-fx-background-color: #1e1e1e;
+}
+
+.diff-panel-left {
+	-fx-background-color: #1e1e1e;
+	-fx-border-color: #324d67;
+	-fx-border-width: 0 1 0 0;
+}
+
+.diff-panel-right {
+	-fx-background-color: #1e1e1e;
+}
+
+.diff-line-container {
+	-fx-min-height: 20px;
+	-fx-padding: 2px 0;
+}
+
+.diff-line-container:hover {
+	-fx-background-color: rgba(255, 255, 255, 0.03);
+}
+
+.diff-line-number {
+	-fx-text-fill: #64748b;
+	-fx-font-family: "JetBrains Mono", monospace;
+	-fx-font-size: 11px;
+	-fx-background-color: rgba(25, 38, 51, 0.5);
+	-fx-border-color: rgba(50, 77, 103, 0.3);
+	-fx-border-width: 0 1 0 0;
+}
+
+.diff-line-content {
+	-fx-text-fill: #abb2bf;
+	-fx-font-family: "JetBrains Mono", monospace;
+	-fx-font-size: 12px;
+}
+
+.diff-line-removed {
+	-fx-background-color: rgba(220, 38, 38, 0.15);
+}
+
+.diff-line-removed .diff-line-number {
+	-fx-background-color: rgba(220, 38, 38, 0.2);
+}
+
+.diff-line-removed .diff-line-content {
+	-fx-text-fill: #e06c75;
+}
+
+.diff-line-added {
+	-fx-background-color: rgba(22, 163, 74, 0.15);
+}
+
+.diff-line-added .diff-line-number {
+	-fx-background-color: rgba(22, 163, 74, 0.2);
+}
+
+.diff-line-added .diff-line-content {
+	-fx-text-fill: #98c379;
+}
+
+.diff-line-unchanged {
+	-fx-background-color: transparent;
+}
+
+.diff-line-empty {
+	-fx-background-color: rgba(21, 21, 21, 0.5);
+}
+
+.diff-line-empty .diff-line-number {
+	-fx-background-color: rgba(25, 38, 51, 0.3);
+}
+
+.diff-scroll {
+	-fx-background-color: #1e1e1e;
+}
+
+.diff-scroll .viewport {
+	-fx-background-color: #1e1e1e;
+}
+
+.diff-scroll .scroll-bar:vertical {
+	-fx-background-color: #1e1e1e;
+}
+
+.diff-scroll .scroll-bar:vertical .track {
+	-fx-background-color: #1e1e1e;
+}
+
+.diff-scroll .scroll-bar:vertical .thumb {
+	-fx-background-color: #324d67;
+	-fx-background-radius: 5px;
+}
+
+.diff-scroll .scroll-bar:vertical .thumb:hover {
+	-fx-background-color: #4b6a88;
+}
+
+.diff-line {
+	-fx-font-family: "JetBrains Mono", monospace;
+	-fx-font-size: 12px;
+}
+
+.diff-added {
+	-fx-text-fill: #98c379;
+}
+
+.diff-removed {
+	-fx-text-fill: #e06c75;
+}
+
+.diff-unchanged {
+	-fx-text-fill: #abb2bf;
+}
+
+
+/* Sidebar Tree View Styles */
+
+.sidebar-tree {
+    -fx-background-color: #192633;
+    -fx-border-color: transparent;
+}
+
+.sidebar-tree .tree-cell {
+    -fx-background-color: transparent;
+    -fx-text-fill: #cbd5e1;
+    -fx-padding: 4px 8px;
+    -fx-font-size: 13px;
+}
+
+.sidebar-tree .tree-cell:hover {
+    -fx-background-color: rgba(255, 255, 255, 0.05);
+}
+
+.sidebar-tree .tree-cell:selected {
+    -fx-background-color: #137fec;
+    -fx-text-fill: white;
+}
+
+.sidebar-tree .tree-cell:selected:hover {
+    -fx-background-color: #0d6edb;
+}
+
+/* File status styles */
+.sidebar-tree .tree-cell.file-modified {
+    -fx-text-fill: #facc15; /* yellow for modified */
+}
+
+.sidebar-tree .tree-cell.file-modified:selected {
+    -fx-text-fill: white;
+}
+
+.sidebar-tree .tree-cell.file-unchanged {
+    -fx-text-fill: #94a3b8; /* slate for unchanged */
+}
+
+.sidebar-tree .tree-cell.file-unchanged:selected {
+    -fx-text-fill: white;
+}
+
+.sidebar-tree .tree-cell.folder-node {
+    -fx-text-fill: #e2e8f0;
+    -fx-font-weight: 500;
+}
+
+.sidebar-tree .tree-cell.folder-node:selected {
+    -fx-text-fill: white;
+}
+
+/* Disclosure arrow styling */
+.sidebar-tree .tree-disclosure-node {
+    -fx-padding: 2px 4px 2px 0px;
+}
+
+.sidebar-tree .tree-disclosure-node .arrow {
+    -fx-background-color: #64748b;
+    -fx-padding: 3px;
+}
+
+.sidebar-tree .tree-cell:selected .tree-disclosure-node .arrow {
+    -fx-background-color: white;
+}
+
+/* Remove default focus border */
+.sidebar-tree:focused {
+    -fx-background-color: #192633;
+}
+
+.sidebar-tree .tree-cell:focused {
+    -fx-background-color: #137fec;
+    -fx-background-insets: 0;
+}
+
+/* Scrollbar styling to match the design */
+.sidebar-tree .scroll-bar:vertical {
+    -fx-background-color: #111a22;
+}
+
+.sidebar-tree .scroll-bar:vertical .track {
+    -fx-background-color: #111a22;
+}
+
+.sidebar-tree .scroll-bar:vertical .thumb {
+    -fx-background-color: #324d67;
+    -fx-background-radius: 5px;
+}
+
+.sidebar-tree .scroll-bar:vertical .thumb:hover {
+    -fx-background-color: #4b6a88;
+}
+
+.sidebar-tree .scroll-bar:vertical .increment-button,
+.sidebar-tree .scroll-bar:vertical .decrement-button {
+    -fx-background-color: transparent;
+    -fx-padding: 0;
+}
+
+/* Toolbar Styles */
+.toolbar {
+    -fx-background-color: #101922;
+    -fx-border-color: #324d67;
+    -fx-border-width: 0 0 1 0;
+}
+
+.toolbar-label {
+    -fx-text-fill: #94a3b8;
+    -fx-font-size: 11px;
+    -fx-font-weight: 600;
+}
+
+.path-field {
+    -fx-background-color: #192633;
+    -fx-text-fill: #cbd5e1;
+    -fx-border-color: #324d67;
+    -fx-border-radius: 4px;
+    -fx-background-radius: 4px;
+    -fx-padding: 6px 10px;
+    -fx-font-family: "JetBrains Mono", monospace;
+    -fx-font-size: 12px;
+}
+
+.path-field:focused {
+    -fx-border-color: #137fec;
+}
+
+.browse-button {
+    -fx-background-color: #192633;
+    -fx-text-fill: white;
+    -fx-border-color: #324d67;
+    -fx-border-radius: 4px;
+    -fx-background-radius: 4px;
+    -fx-padding: 6px 12px;
+    -fx-font-size: 12px;
+    -fx-font-weight: 500;
+}
+
+.browse-button:hover {
+    -fx-background-color: #324d67;
+    -fx-border-color: #64748b;
+}
+
+.browse-button:pressed {
+    -fx-background-color: #264056;
+}
+
+.compare-button {
+    -fx-background-color: #137fec;
+    -fx-text-fill: white;
+    -fx-border-color: transparent;
+    -fx-border-radius: 6px;
+    -fx-background-radius: 6px;
+    -fx-padding: 8px 24px;
+    -fx-font-size: 13px;
+    -fx-font-weight: 600;
+}
+
+.compare-button:hover {
+    -fx-background-color: #0d6edb;
+}
+
+.compare-button:pressed {
+    -fx-background-color: #0a5bc4;
+}
+
+.compare-button:disabled {
+    -fx-background-color: #324d67;
+    -fx-text-fill: #64748b;
+    -fx-opacity: 0.6;
+}
+
+/* Sidebar Header */
+.sidebar-header {
+    -fx-background-color: #192633;
+    -fx-border-color: #324d67;
+    -fx-border-width: 0 0 1 0;
+}
+
+.sidebar-header-title {
+    -fx-text-fill: #cbd5e1;
+    -fx-font-size: 13px;
+    -fx-font-weight: 600;
+}
+
+.file-count-badge {
+    -fx-padding: 3px 8px;
+    -fx-border-radius: 3px;
+    -fx-background-radius: 3px;
+    -fx-font-size: 11px;
+    -fx-font-weight: 600;
+}
+
+.badge-added {
+    -fx-background-color: rgba(34, 197, 94, 0.15);
+    -fx-text-fill: #22c55e;
+    -fx-border-color: rgba(34, 197, 94, 0.3);
+    -fx-border-width: 1;
+}
+
+.badge-modified {
+    -fx-background-color: rgba(234, 179, 8, 0.15);
+    -fx-text-fill: #facc15;
+    -fx-border-color: rgba(234, 179, 8, 0.3);
+    -fx-border-width: 1;
+}
+
+.badge-deleted {
+    -fx-background-color: rgba(239, 68, 68, 0.15);
+    -fx-text-fill: #ef4444;
+    -fx-border-color: rgba(239, 68, 68, 0.3);
+    -fx-border-width: 1;
+}
+
+/* Primary Button */
+.primary-button {
+    -fx-background-color: #137fec;
+    -fx-text-fill: white;
+    -fx-border-radius: 6px;
+    -fx-background-radius: 6px;
+    -fx-padding: 10px 20px;
+    -fx-font-size: 13px;
+    -fx-font-weight: 500;
+}
+
+.primary-button:hover {
+    -fx-background-color: #0d6edb;
+}
+
+.primary-button:pressed {
+    -fx-background-color: #0a5bc4;
+}
+
