@@ -1,34 +1,20 @@
-import Versions from './components/Versions'
-import electronLogo from './assets/electron.svg'
+import Button from './components/Button/Button'
+import FileInput from './components/FileInput/FileInput'
+import TextInput from './components/TextInput/TextInput'
 
 function App(): React.JSX.Element {
-  const ipcHandle = (): void => window.electron.ipcRenderer.send('ping')
-
   return (
-    <>
-      <img alt="logo" className="logo" src={electronLogo} />
-      <div className="h-16 italic bg-red-900">Powered by electron-vite</div>
-      <div className="text">
-        Build an Electron app with <span className="react">React</span>
-        &nbsp;and <span className="ts">TypeScript</span>
+    <div className="bg-primary">
+      <div className="min-h-screen bg-base-100 text-base-content p-6 space-y-4">
+        <div className="bg-base-200 p-4 rounded">bg-base-200 (should be dark gray)</div>
+
+        <div className="bg-base-300 p-4 rounded">bg-base-300 (should be darker)</div>
+
+        <Button>Click me</Button>
+        <FileInput />
+        <TextInput />
       </div>
-      <p className="tip">
-        Please try pressing <code>F12</code> to open the devTool
-      </p>
-      <div className="actions">
-        <div className="action">
-          <a href="https://electron-vite.org/" target="_blank" rel="noreferrer">
-            Documentation
-          </a>
-        </div>
-        <div className="action">
-          <a target="_blank" rel="noreferrer" onClick={ipcHandle}>
-            Send IPC
-          </a>
-        </div>
-      </div>
-      <Versions></Versions>
-    </>
+    </div>
   )
 }
 
