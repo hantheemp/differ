@@ -5,7 +5,8 @@ import { electronAPI } from '@electron-toolkit/preload'
 const api = {
   selectDirectory: (type: string) => ipcRenderer.invoke('select-directory', type),
   scanFiles: (options: { baseline: string; target: string }) =>
-    ipcRenderer.invoke('scan-files', options)
+    ipcRenderer.invoke('scan-files', options),
+  getVersion: () => process.env.npm_package_version || '1.0.0'
 }
 
 // Use `contextBridge` APIs to expose Electron APIs to

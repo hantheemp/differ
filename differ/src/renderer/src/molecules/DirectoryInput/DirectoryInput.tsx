@@ -19,7 +19,7 @@ export default function DirectoryInput({
 }: DirectoryInputProps) {
   return (
     <div className="flex flex-row items-center gap-2">
-      <Label className="w-20 text-base font-normal normal-case">{label}</Label>
+      <Label className="w-20 text-xs font-normal normal-case">{label}</Label>
       <TextInput
         className="flex-1"
         value={value}
