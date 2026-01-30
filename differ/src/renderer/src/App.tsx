@@ -1,6 +1,7 @@
-import Button from './components/Button/Button'
-import FileInput from './components/FileInput/FileInput'
-import TextInput from './components/TextInput/TextInput'
+import Button from './atoms/Button/Button'
+import FileInput from './atoms/FileInput/FileInput'
+import TextInput from './atoms/TextInput/TextInput'
+import DirectoryInput from './molecules/DirectoryInput/DirectoryInput'
 
 function App(): React.JSX.Element {
   return (
@@ -13,6 +14,7 @@ function App(): React.JSX.Element {
         <Button>Click me</Button>
         <FileInput />
         <TextInput />
+        <DirectoryInput>Choose</DirectoryInput>
       </div>
     </div>
   )
