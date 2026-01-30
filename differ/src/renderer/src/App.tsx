@@ -1,4 +1,5 @@
 import Button from './atoms/Button/Button'
+import CodePane from './atoms/CodePane/CodePane'
 import FileInput from './atoms/FileInput/FileInput'
 import TextInput from './atoms/TextInput/TextInput'
 import DirectoryInput from './molecules/DirectoryInput/DirectoryInput'
@@ -15,6 +16,7 @@ function App(): React.JSX.Element {
         <FileInput />
         <TextInput />
         <DirectoryInput>Choose</DirectoryInput>
+        <CodePane />
       </div>
     </div>
   )
