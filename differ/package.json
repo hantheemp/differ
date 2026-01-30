@@ -20,7 +20,8 @@
     "daisyui": "^5.0.0",
     "prismjs": "^1.30.0",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "zustand": "^5.0.10"
   },
   "devDependencies": {
     "@electron-toolkit/preload": "^3.0.2",

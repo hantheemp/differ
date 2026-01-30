@@ -1,11 +1,34 @@
 import Button from '@renderer/atoms/Button/Button'
+import Label from '@renderer/atoms/Label/Label'
 import TextInput from '@renderer/atoms/TextInput/TextInput'
 
-export default function DirectoryInput({ children }: ButtonProps): React.JSX.Element {
+interface DirectoryInputProps {
+  label: string
+  value?: string
+  onChange?: (value: string) => void
+  onSelect?: () => void
+  buttonText?: string
+}
+
+export default function DirectoryInput({
+  label,
+  value = '',
+  onChange,
+  onSelect,
+  buttonText = 'Select'
+}: DirectoryInputProps) {
   return (
-    <div>
-      <TextInput />
-      <Button>{children}</Button>
+    <div className="flex flex-row items-center gap-2">
+      <Label className="w-20 text-base font-normal normal-case">{label}</Label>
+      <TextInput
+        className="flex-1"
+        value={value}
+        onChange={(e) => onChange?.(e.target.value)}
+        readOnly={!onChange}
+      />
+      <Button className="btn btn-primary" onClick={onSelect}>
+        {buttonText}
+      </Button>
     </div>
   )
 }
