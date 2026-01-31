@@ -1,13 +1,26 @@
-import { useEffect, useState } from "react";
-import Prism from "prismjs";
-import "prismjs/themes/prism-tomorrow.css";
-import "prismjs/components/prism-csharp";   // <-- use csharp here
+import { useEffect, useState } from 'react'
+import Prism from 'prismjs'
+import 'prismjs/themes/prism-tomorrow.css'
+import 'prismjs/components/prism-csharp'
 
-export default function CodePane() {
-  const [code, setCode] = useState("");
+import 'prismjs/plugins/line-numbers/prism-line-numbers'
+import 'prismjs/plugins/line-numbers/prism-line-numbers.css'
+
+import 'prismjs/plugins/line-highlight/prism-line-highlight'
+import 'prismjs/plugins/line-highlight/prism-line-highlight.css'
+
+import Label from '../Label/Label'
+
+interface CodePaneProps {
+  className?: string
+  title?: string
+}
+
+export default function CodePane({ className = '', title = 'Code' }: CodePaneProps) {
+  const [code, setCode] = useState('')
 
   useEffect(() => {
-    const dummyCode = `
+    setCode(`
 using System;
 
 namespace DemoApp {
@@ -17,20 +30,22 @@ namespace DemoApp {
         }
     }
 }
-    `;
-    setCode(dummyCode);
-  }, []);
+`)
+  }, [])
 
   useEffect(() => {
-    Prism.highlightAll();
-  }, [code]);
+    Prism.highlightAll()
+  }, [code])
 
   return (
-    <div className="card bg-base-200 shadow-md p-4">
-      <h2 className="card-title">Dummy .NET File</h2>
-      <pre className="overflow-x-auto whitespace-pre bg-base-300 p-4 rounded-md">
-        <code className="language-csharp">{code}</code>
-      </pre>
+    <div className="space-y-4 p-4 rounded">
+      <Label className="text-xs font-semibold">{title}</Label>
+
+      <div className="flex-1 overflow-auto">
+        <pre className="bg-base-300 rounded-md h-full line-numbers" data-line="6">
+          <code className="language-csharp">{code}</code>
+        </pre>
+      </div>
     </div>
-  );
+  )
 }

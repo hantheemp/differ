@@ -1,21 +1,13 @@
-// atoms/Icon/Icon.tsx
+import * as LucideIcons from 'lucide-react'
+import { LucideIcon } from 'lucide-react'
+
 interface IconProps {
-  children: React.ReactNode
-  width?: number
-  height?: number
+  name: keyof typeof LucideIcons
+  size?: number
   className?: string
 }
 
-export default function Icon({ children, width = 24, height = 24, className = '' }: IconProps) {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width={width}
-      height={height}
-      viewBox="0 0 24 24"
-      className={`fill-current ${className}`}
-    >
-      {children}
-    </svg>
-  )
+export default function Icon({ name, size = 24, className = '' }: IconProps) {
+  const IconComponent = LucideIcons[name] as LucideIcon
+  return <IconComponent size={size} className={className} />
 }

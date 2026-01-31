@@ -21,12 +21,12 @@ export default function DirectoryInput({
     <div className="flex flex-row items-center gap-2">
       <Label className="w-20 text-xs font-normal normal-case">{label}</Label>
       <TextInput
-        className="flex-1"
+        className="flex-1 mr-6"
         value={value}
         onChange={(e) => onChange?.(e.target.value)}
         readOnly={!onChange}
       />
-      <Button className="btn btn-primary" onClick={onSelect}>
+      <Button className="btn btn-secondary" onClick={onSelect}>
         {buttonText}
       </Button>
     </div>
