@@ -1,16 +1,6 @@
-import { ReactNode, useState } from 'react'
+import { useState } from 'react'
 import ResizableDivider from '@renderer/atoms/ResizableDivider/ResizableDivider'
-
-interface VerticalSplitProps {
-  top: ReactNode
-  bottom: ReactNode
-  defaultSize?: number
-  min?: number
-  max?: number
-  snapPoints?: number[]
-  snapThreshold?: number
-  className?: string
-}
+import { VerticalSplitProps } from './type'
 
 export default function VerticalSplit({
   top,

@@ -1,16 +1,6 @@
 import Icon from '@renderer/atoms/Icon/Icon'
 import TreeItemText from '@renderer/atoms/TreeItemText/TreeItemText'
-
-interface TreeItemProps {
-  name: string
-  iconName: string
-  isFolder: boolean
-  isExpanded?: boolean
-  isSelected?: boolean
-  status?: 'modified' | 'added' | 'deleted' | 'unchanged'
-  depth: number
-  onClick: () => void
-}
+import type { TreeItemProps } from './type'
 
 export default function TreeItem({
   name,

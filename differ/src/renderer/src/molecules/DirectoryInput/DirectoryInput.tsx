@@ -1,14 +1,7 @@
 import Button from '@renderer/atoms/Button/Button'
 import Label from '@renderer/atoms/Label/Label'
 import TextInput from '@renderer/atoms/TextInput/TextInput'
-
-interface DirectoryInputProps {
-  label: string
-  value?: string
-  onChange?: (value: string) => void
-  onSelect?: () => void
-  buttonText?: string
-}
+import { DirectoryInputProps } from './type'
 
 export default function DirectoryInput({
   label,

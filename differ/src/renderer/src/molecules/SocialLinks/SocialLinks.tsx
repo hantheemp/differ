@@ -1,14 +1,4 @@
-// molecules/SocialLinks/SocialLinks.tsx
 import Icon from '@renderer/atoms/Icon/Icon'
-
-interface SocialLink {
-  platform: 'Linkedin' | 'Github' | 'Mail'
-  href: string
-}
-
-interface SocialLinksProps {
-  links?: SocialLink[]
-}
 
 export default function SocialLinks({
   links = [

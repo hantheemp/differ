@@ -1,11 +1,5 @@
 import Logo from '@renderer/atoms/Logo/Logo'
 
-interface CompanyInfoProps {
-  name: string
-  tagline: string
-  year?: number
-}
-
 export default function CompanyInfo({ name, tagline, year = new Date().getFullYear() }: CompanyInfoProps) {
   return (
     <aside className="flex flex-col items-center gap-2">

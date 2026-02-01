@@ -1,25 +1,5 @@
 import { create } from 'zustand'
-
-interface TreeNode {
-  name: string
-  path: string
-  isFolder: boolean
-  status?: 'modified' | 'added' | 'deleted' | 'unchanged'
-  expanded?: boolean
-  children?: TreeNode[]
-}
-
-interface StoreState {
-  baselineDirectory: string
-  targetDirectory: string
-  treeData: TreeNode[]
-  selectedFile: TreeNode | null
-
-  setBaselineDirectory: (path: string) => void
-  setTargetDirectory: (path: string) => void
-  selectFile: (file: TreeNode) => void
-  setTreeData: (data: TreeNode[]) => void
-}
+import type { StoreState } from '@renderer/types'
 
 export const useStore = create<StoreState>((set) => ({
   baselineDirectory: '',

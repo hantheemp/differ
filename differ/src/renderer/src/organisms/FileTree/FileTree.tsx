@@ -3,8 +3,10 @@ import CollapsibleTreeItem from '@renderer/molecules/CollapsibleTreeItem/Collaps
 import { useEffect } from 'react'
 import EmptyState from '@renderer/molecules/FileTreeEmptyState.tsx/FileTreeEmptyState'
 import Label from '@renderer/atoms/Label/Label'
+import type { TreeNode } from '@renderer/types'
+import type { FileTreeProps } from './type'
 
-const mockTreeData = [
+const mockTreeData: TreeNode[] = [
   {
     name: 'src',
     path: '/src',
@@ -67,10 +69,6 @@ const mockTreeData = [
   }
 ]
 
-interface FileTreeProps {
-  className?: string
-}
-
 export default function FileTree({ className = '' }: FileTreeProps) {
   const { treeData, selectedFile, selectFile, setTreeData } = useStore()
   const hasFiles = treeData && treeData.length > 0
@@ -82,7 +80,7 @@ export default function FileTree({ className = '' }: FileTreeProps) {
   }, [])
 
   return (
-    <div className="space-y-4 p-4 rounded">
+    <div className={`space-y-4 p-4 rounded ${className}`}>
       {hasFiles && (
         <div className="">
           <Label className="text-lg font-semibold">Changed Files</Label>

@@ -1,6 +1,4 @@
-interface TextInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
-  className?: string
-}
+import type { TextInputProps } from './type'
 
 export default function TextInput({ className = '', ...props }: TextInputProps) {
   return (

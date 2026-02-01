@@ -10,11 +10,7 @@ import 'prismjs/plugins/line-highlight/prism-line-highlight'
 import 'prismjs/plugins/line-highlight/prism-line-highlight.css'
 
 import Label from '../Label/Label'
-
-interface CodePaneProps {
-  className?: string
-  title?: string
-}
+import type { CodePaneProps } from './type'
 
 export default function CodePane({ className = '', title = 'Code' }: CodePaneProps) {
   const [code, setCode] = useState('')
@@ -38,7 +34,7 @@ namespace DemoApp {
   }, [code])
 
   return (
-    <div className="space-y-4 p-4 rounded">
+    <div className={`space-y-4 p-4 rounded ${className}`}>
       <Label className="text-xs font-semibold">{title}</Label>
 
       <div className="flex-1 overflow-auto">

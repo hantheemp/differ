@@ -1,0 +1,3 @@
+interface CopyrightProps {
+  year?: number
+}

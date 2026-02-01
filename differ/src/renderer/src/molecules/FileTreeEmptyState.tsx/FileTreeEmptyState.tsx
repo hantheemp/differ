@@ -1,11 +1,5 @@
 import { FolderOpen } from 'lucide-react'
 
-interface EmptyStateProps {
-  icon?: React.ReactNode
-  title: string
-  description: string
-}
-
 export default function EmptyState({
   icon = <FolderOpen className="w-16 h-16 opacity-50" />,
   title,

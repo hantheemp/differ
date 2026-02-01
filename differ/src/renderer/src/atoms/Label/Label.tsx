@@ -1,7 +1,4 @@
-interface LabelProps {
-  children: React.ReactNode
-  className?: string
-}
+import type { LabelProps } from './type'
 
 export default function Label({ children, className = '' }: LabelProps) {
   return (

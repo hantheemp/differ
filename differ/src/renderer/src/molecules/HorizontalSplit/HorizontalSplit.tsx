@@ -1,16 +1,6 @@
-import { ReactNode, useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import ResizableDivider from '@renderer/atoms/ResizableDivider/ResizableDivider'
-
-interface HorizontalSplitProps {
-  left: ReactNode
-  right: ReactNode
-  defaultSize?: number | 'center'
-  min?: number
-  max?: number
-  snapPoints?: number[]
-  snapThreshold?: number
-  className?: string
-}
+import type { HorizontalSplitProps } from './type'
 
 export default function HorizontalSplit({
   left,
@@ -28,7 +18,6 @@ export default function HorizontalSplit({
   )
   const resetSizeRef = useRef<number>(leftWidth)
 
-  // Resolve "center" default once container is known
   useEffect(() => {
     if (defaultSize !== 'center' || !containerRef.current) return
 

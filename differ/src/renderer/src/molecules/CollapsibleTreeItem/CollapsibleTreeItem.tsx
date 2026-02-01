@@ -1,21 +1,6 @@
 import { useState } from 'react'
 import TreeItem from '@renderer/molecules/TreeItem/TreeItem'
-
-interface TreeNode {
-  name: string
-  path: string
-  isFolder: boolean
-  status?: 'modified' | 'added' | 'deleted' | 'unchanged'
-  expanded?: boolean
-  children?: TreeNode[]
-}
-
-interface CollapsibleTreeItemProps {
-  node: TreeNode
-  depth: number
-  selectedPath?: string
-  onSelect: (node: TreeNode) => void
-}
+import type { CollapsibleTreeItemProps } from './type'
 
 export default function CollapsibleTreeItem({
   node,
