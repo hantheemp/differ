@@ -1,21 +1,17 @@
 import FileTree from '@renderer/organisms/FileTree/FileTree'
-import CodePane from '@renderer/atoms/CodePane/CodePane'
+import DiffView from '@renderer/organisms/DiffView/DiffView'
+import HorizontalSplit from '@renderer/molecules/HorizontalSplit/HorizontalSplit'
 
 export default function DiffTemplate() {
   return (
-    <div className="flex h-screen w-full">
-      <div className="w-80 shrink-0">
-        <FileTree />
-      </div>
-      <div className="divider lg:divider-horizontal"></div>
-      <div className="flex flex-1">
-        <div className="flex-1">
-          <CodePane title="Baseline" />
-        </div>
-        <div className="flex-1">
-          <CodePane title="Target" />
-        </div>
-      </div>
+    <div className="h-screen">
+      <HorizontalSplit
+        defaultSize={320}
+        min={200}
+        max={600}
+        left={<FileTree />}
+        right={<DiffView />}
+      />
     </div>
   )
 }
