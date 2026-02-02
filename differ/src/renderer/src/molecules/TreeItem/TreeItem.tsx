@@ -15,7 +15,7 @@ export default function TreeItem({
   return (
     <div
       className={`
-        flex items-center gap-1 px-2 py-1.5 cursor-pointer
+        flex items-center gap-1 px-2 py-1.5 cursor-pointer bg-base-200
         hover:bg-base-200 transition-colors rounded
         ${isSelected ? 'bg-primary text-primary-content' : ''}
       `}
