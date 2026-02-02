@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import ResizableDivider from '@renderer/atoms/ResizableDivider/ResizableDivider'
-import { VerticalSplitProps } from './type'
+import { VerticalSplitProps } from './types'
 
 export default function VerticalSplit({
   top,

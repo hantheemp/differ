@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import ResizableDivider from '@renderer/atoms/ResizableDivider/ResizableDivider'
-import type { HorizontalSplitProps } from './type'
+import type { HorizontalSplitProps } from './types'
 
 export default function HorizontalSplit({
   left,

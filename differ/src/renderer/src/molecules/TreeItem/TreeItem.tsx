@@ -1,6 +1,6 @@
 import Icon from '@renderer/atoms/Icon/Icon'
 import TreeItemText from '@renderer/atoms/TreeItemText/TreeItemText'
-import type { TreeItemProps } from './type'
+import type { TreeItemProps } from './types'
 
 export default function TreeItem({
   name,

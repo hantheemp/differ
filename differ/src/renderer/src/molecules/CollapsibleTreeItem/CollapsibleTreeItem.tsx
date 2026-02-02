@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import TreeItem from '@renderer/molecules/TreeItem/TreeItem'
-import type { CollapsibleTreeItemProps } from './type'
+import type { CollapsibleTreeItemProps } from './types'
 
 export default function CollapsibleTreeItem({
   node,

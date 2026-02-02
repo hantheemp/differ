@@ -1,4 +1,4 @@
-import type { LabelProps } from './type'
+import type { LabelProps } from './types'
 
 export default function Label({ children, className = '' }: LabelProps) {
   return (

@@ -1,4 +1,4 @@
-import type { ButtonProps } from './type'
+import type { ButtonProps } from './types'
 
 export default function Button({ children, className = '', ...props }: ButtonProps) {
   return (

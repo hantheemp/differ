@@ -10,7 +10,7 @@ import 'prismjs/plugins/line-highlight/prism-line-highlight'
 import 'prismjs/plugins/line-highlight/prism-line-highlight.css'
 
 import Label from '../Label/Label'
-import type { CodePaneProps } from './type'
+import type { CodePaneProps } from './types'
 
 export default function CodePane({ className = '', title = 'Code' }: CodePaneProps) {
   const [code, setCode] = useState('')

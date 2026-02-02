@@ -1,7 +1,7 @@
 import Button from '@renderer/atoms/Button/Button'
 import Label from '@renderer/atoms/Label/Label'
 import TextInput from '@renderer/atoms/TextInput/TextInput'
-import { DirectoryInputProps } from './type'
+import { DirectoryInputProps } from './types'
 
 export default function DirectoryInput({
   label,

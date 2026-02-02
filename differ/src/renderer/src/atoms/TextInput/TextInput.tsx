@@ -1,4 +1,4 @@
-import type { TextInputProps } from './type'
+import type { TextInputProps } from './types'
 
 export default function TextInput({ className = '', ...props }: TextInputProps) {
   return (

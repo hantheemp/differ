@@ -1,10 +1,10 @@
 import { useStore } from '@renderer/store/useStore'
 import CollapsibleTreeItem from '@renderer/molecules/CollapsibleTreeItem/CollapsibleTreeItem'
 import { useEffect } from 'react'
-import EmptyState from '@renderer/molecules/FileTreeEmptyState.tsx/FileTreeEmptyState'
+import EmptyState from '@renderer/molecules/FileTreeEmptyState/FileTreeEmptyState'
 import Label from '@renderer/atoms/Label/Label'
 import type { TreeNode } from '@renderer/types'
-import type { FileTreeProps } from './type'
+import type { FileTreeProps } from './types'
 
 const mockTreeData: TreeNode[] = [
   {
