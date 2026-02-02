@@ -3,10 +3,16 @@ import { electronAPI } from '@electron-toolkit/preload'
 
 // Custom APIs for renderer
 const api = {
-  selectDirectory: (type: string) => ipcRenderer.invoke('select-directory', type),
-  scanFiles: (options: { baseline: string; target: string }) =>
-    ipcRenderer.invoke('scan-files', options),
-  getVersion: () => process.env.npm_package_version || '1.0.0'
+  selectDirectory: async (type) => {
+    console.log('Preload: selectDirectory called with type:', type)
+    try {
+      const result = await ipcRenderer.invoke('select-directory', type)
+      return result
+    } catch (error) {
+      console.error('Preload: selectDirectory error:', error)
+      throw error
+    }
+  }
 }
 
 // Use `contextBridge` APIs to expose Electron APIs to

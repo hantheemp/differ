@@ -4,9 +4,7 @@ declare global {
   interface Window {
     electron: ElectronAPI
     api: {
-      selectDirectory: (type: string) => Promise<string>
-      scanFiles: (options: { baseline: string; target: string }) => Promise<any>
-      getVersion: () => string
+      selectDirectory: (type: 'baseline' | 'target') => Promise<string | null>
     }
   }
 }

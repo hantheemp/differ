@@ -1,7 +1,3 @@
-/**
- * Store types - Global state management types
- */
-
 import type { TreeNode } from './domain'
 
 export interface StoreState {
@@ -10,8 +6,8 @@ export interface StoreState {
   treeData: TreeNode[]
   selectedFile: TreeNode | null
 
-  setBaselineDirectory: (path: string) => void
-  setTargetDirectory: (path: string) => void
+  setBaselineDirectory: (path: string | null) => void
+  setTargetDirectory: (path: string | null) => void
   selectFile: (file: TreeNode) => void
   setTreeData: (data: TreeNode[]) => void
 }

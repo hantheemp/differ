@@ -6,8 +6,7 @@ import { DirectoryInputProps } from './type'
 export default function DirectoryInput({
   label,
   value = '',
-  onChange,
-  onSelect,
+  onClick,
   buttonText = 'Select'
 }: DirectoryInputProps) {
   return (
@@ -16,10 +15,10 @@ export default function DirectoryInput({
       <TextInput
         className="flex-1 mr-6"
         value={value}
-        onChange={(e) => onChange?.(e.target.value)}
-        readOnly={!onChange}
+        readOnly
+        placeholder="No directory selected"
       />
-      <Button className="btn btn-secondary" onClick={onSelect}>
+      <Button className="btn btn-secondary" onClick={onClick}>
         {buttonText}
       </Button>
     </div>
