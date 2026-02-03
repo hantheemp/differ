@@ -10,7 +10,9 @@ export default function Directory() {
   const handleSelectBaseline = async () => {
     try {
       const path = await window.api.selectDirectory('baseline')
-      setBaselineDirectory(path)
+      if (path) {
+        setBaselineDirectory(path)
+      }
     } catch (error) {
       console.error('Error selecting baseline directory:', error)
     }
@@ -19,8 +21,12 @@ export default function Directory() {
   const handleSelectTarget = async () => {
     try {
       const path = await window.api.selectDirectory('target')
-      setTargetDirectory(path)
-    } catch (error) {}
+      if (path) {
+        setTargetDirectory(path)
+      }
+    } catch (error) {
+      console.error('Error selecting target directory:', error)
+    }
   }
 
   const canCompare = baselineDirectory && targetDirectory

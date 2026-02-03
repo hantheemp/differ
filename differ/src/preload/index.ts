@@ -1,33 +1,36 @@
-import { contextBridge, ipcRenderer } from 'electron'
-import { electronAPI } from '@electron-toolkit/preload'
+import { app, BrowserWindow } from 'electron'
+import { electronApp, optimizer } from '@electron-toolkit/utils'
+import { registerIpcHandlers } from '../main/ipc/handlers'
+/**
+ * Application entry point
+ */
+app.whenReady().then(() => {
+  // Set app user model id for windows
+  electronApp.setAppUserModelId('com.electron')
 
-// Custom APIs for renderer
-const api = {
-  selectDirectory: async (type) => {
-    console.log('Preload: selectDirectory called with type:', type)
-    try {
-      const result = await ipcRenderer.invoke('select-directory', type)
-      return result
-    } catch (error) {
-      console.error('Preload: selectDirectory error:', error)
-      throw error
+  // Watch window shortcuts in development
+  app.on('browser-window-created', (_, window) => {
+    optimizer.watchWindowShortcuts(window)
+  })
+
+  // Create main window and register handlers
+  const mainWindow = createMainWindow()
+  registerIpcHandlers(mainWindow)
+
+  // Handle macOS activation
+  app.on('activate', () => {
+    if (BrowserWindow.getAllWindows().length === 0) {
+      const window = createMainWindow()
+      registerIpcHandlers(window)
     }
-  }
-}
+  })
+})
 
-// Use `contextBridge` APIs to expose Electron APIs to
-// renderer only if context isolation is enabled, otherwise
-// just add to the DOM global.
-if (process.contextIsolated) {
-  try {
-    contextBridge.exposeInMainWorld('electron', electronAPI)
-    contextBridge.exposeInMainWorld('api', api)
-  } catch (error) {
-    console.error(error)
+/**
+ * Quit when all windows are closed (except on macOS)
+ */
+app.on('window-all-closed', () => {
+  if (process.platform !== 'darwin') {
+    app.quit()
   }
-} else {
-  // @ts-ignore (define in dts)
-  window.electron = electronAPI
-  // @ts-ignore (define in dts)
-  window.api = api
-}
+})

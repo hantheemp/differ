@@ -6,8 +6,8 @@ export interface StoreState {
   treeData: TreeNode[]
   selectedFile: TreeNode | null
 
-  setBaselineDirectory: (path: string | null) => void
-  setTargetDirectory: (path: string | null) => void
+  setBaselineDirectory: (path: string) => void
+  setTargetDirectory: (path: string) => void
   selectFile: (file: TreeNode) => void
   setTreeData: (data: TreeNode[]) => void
 }

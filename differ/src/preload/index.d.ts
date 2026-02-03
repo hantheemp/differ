@@ -1,10 +1,8 @@
-import { ElectronAPI } from '@electron-toolkit/preload'
+/// <reference types="vite/client" />
 
-declare global {
-  interface Window {
-    electron: ElectronAPI
-    api: {
-      selectDirectory: (type: 'baseline' | 'target') => Promise<string | null>
-    }
+interface Window {
+  api: {
+    selectDirectory: (type: 'baseline' | 'target') => Promise<string | null>
+    // Add other methods your preload exposes here
   }
 }
