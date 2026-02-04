@@ -12,6 +12,8 @@ export interface TreeNode {
   status?: FileStatus
   expanded?: boolean
   children?: TreeNode[]
+  baseline?: string | null
+  target?: string
 }
 
 export interface ComparisonResult {
@@ -19,4 +21,11 @@ export interface ComparisonResult {
   baseline: TreeNode[]
   target: TreeNode[]
   // ... other comparison data
+}
+
+export interface FileResult {
+  path: string
+  status: FileStatus
+  baseline: string | null
+  target: string
 }
