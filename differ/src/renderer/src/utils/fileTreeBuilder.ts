@@ -1,11 +1,4 @@
-import type { TreeNode } from '@renderer/types'
-
-interface FileResult {
-  path: string
-  status: 'added' | 'modified' | 'deleted' | 'unchanged'
-  baseline: string | null
-  target: string
-}
+import type { FileResult, TreeNode } from '@renderer/types'
 
 /**
  * Build a tree structure from flat file results
