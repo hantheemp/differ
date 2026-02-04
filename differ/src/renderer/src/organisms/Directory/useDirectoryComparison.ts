@@ -8,7 +8,8 @@ export function useDirectoryComparison() {
     targetDirectory,
     setBaselineDirectory,
     setTargetDirectory,
-    setTreeData
+    setTreeData,
+    setStats
   } = useStore()
 
   const [isScanning, setIsScanning] = useState(false)
@@ -63,6 +64,7 @@ export function useDirectoryComparison() {
       console.log('First root node:', treeData[0])
 
       setTreeData(treeData)
+      setStats(result.stats)
 
       console.log(`Found ${result.files.length} files:`, {
         added: result.stats.added,
