@@ -21,3 +21,7 @@ export interface ScanRequest {
   baseline: string
   target: string
 }
+
+export interface ReadFileRequest {
+  path: string
+}
