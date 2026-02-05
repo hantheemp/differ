@@ -1,10 +1,17 @@
-export type {
-  UnifiedDiff,
-  UnifiedDiffLine,
-  UnifiedDiffLineKind
-} from '../../../shared/diff/computeUnifiedLineDiff'
+export type UnifiedDiffLineKind = 'context' | 'added' | 'removed'
 
-export type SplitDiffLineKind = 'context' | 'added' | 'removed' | 'empty'
+export interface UnifiedDiffLine {
+  kind: UnifiedDiffLineKind
+  content: string
+  oldLineNumber: number | null
+  newLineNumber: number | null
+}
+
+export interface UnifiedDiff {
+  lines: UnifiedDiffLine[]
+}
+
+export type SplitDiffLineKind = UnifiedDiffLineKind | 'empty'
 
 export interface SplitDiffLine {
   kind: SplitDiffLineKind
