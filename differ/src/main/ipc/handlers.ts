@@ -1,6 +1,7 @@
 import { BrowserWindow, dialog, ipcMain } from 'electron'
 import { ScanRequest, ScanResult } from './types'
 import { scanDirectories } from '../services/fileScanner'
+import { fileExists, readFile } from '../services/fileSystem'
 
 export function registerIpcHandlers(mainWindow: BrowserWindow): void {
   console.log('Registering IPC handlers...')
@@ -23,5 +24,14 @@ export function registerIpcHandlers(mainWindow: BrowserWindow): void {
     } catch (error) {
       throw error
     }
+  })
+
+  ipcMain.handle('read-file', async (_event, path: string): Promise<string> => {
+    if (!path || !(await fileExists(path))) {
+      return ''
+    }
+
+    const buffer = await readFile(path)
+    return buffer.toString('utf-8')
   })
 }

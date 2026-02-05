@@ -5,5 +5,7 @@ contextBridge.exposeInMainWorld('api', {
   selectDirectory: (type: 'baseline' | 'target') => ipcRenderer.invoke('select-directory', type),
 
   scanFiles: (baseline: string, target: string) =>
-    ipcRenderer.invoke('scan-files', { baseline, target })
+    ipcRenderer.invoke('scan-files', { baseline, target }),
+
+  readFile: (path: string) => ipcRenderer.invoke('read-file', path)
 })

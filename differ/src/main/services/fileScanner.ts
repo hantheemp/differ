@@ -1,7 +1,8 @@
 import * as path from 'path'
 import { FileResult, ScanResult } from '../ipc/types'
 import { getAllFiles } from './directoryScanner'
-import { getFileHash } from './fileSystem'
+import { getFileHash, readFile } from './fileSystem'
+import { computeUnifiedLineDiff } from '../../shared/diff/computeUnifiedLineDiff'
 
 export async function scanDirectories(
   baselinePath: string,
@@ -86,13 +87,25 @@ async function processBaselineFile(
   ])
 
   if (baselineHash !== targetHash) {
-    stats.modified++
-    console.log(`Modified: ${relativePath}`)
-    return {
-      path: relativePath,
-      status: 'modified',
-      baseline: baselineFile,
-      target: targetFile
+    const [baselineContent, targetContent] = await Promise.all([
+      readFile(baselineFile).then((buffer) => buffer.toString('utf-8')),
+      readFile(targetFile).then((buffer) => buffer.toString('utf-8'))
+    ])
+
+    const unifiedDiff = computeUnifiedLineDiff(baselineContent, targetContent)
+    const hasSemanticChanges = unifiedDiff.lines.some(
+      (line) => line.kind === 'added' || line.kind === 'removed'
+    )
+
+    if (hasSemanticChanges) {
+      stats.modified++
+      console.log(`Modified: ${relativePath}`)
+      return {
+        path: relativePath,
+        status: 'modified',
+        baseline: baselineFile,
+        target: targetFile
+      }
     }
   }
 
