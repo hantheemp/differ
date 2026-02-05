@@ -20,5 +20,6 @@ interface Window {
         unchanged: number
       }
     }>
+    readFile: (path: string) => Promise<string>
   }
 }
