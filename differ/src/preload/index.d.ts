@@ -1,25 +1,8 @@
-/// <reference types="vite/client" />
+import { ElectronAPI } from '@electron-toolkit/preload'
 
-interface Window {
-  api: {
-    selectDirectory: (type: 'baseline' | 'target') => Promise<string | null>
-    scanFiles: (
-      baseline: string,
-      target: string
-    ) => Promise<{
-      files: Array<{
-        path: string
-        status: 'added' | 'modified' | 'deleted' | 'unchanged'
-        baseline: string | null
-        target: string
-      }>
-      stats: {
-        added: number
-        modified: number
-        deleted: number
-        unchanged: number
-      }
-    }>
-    readFile: (path: string) => Promise<string>
+declare global {
+  interface Window {
+    electron: ElectronAPI
+    api: unknown
   }
 }
