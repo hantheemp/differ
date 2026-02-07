@@ -17,7 +17,9 @@
     "build:linux": "npm run build && electron-builder --linux"
   },
   "dependencies": {
+    "@monaco-editor/react": "^4.7.0",
     "daisyui": "^5.0.0",
+    "jsdiff": "^1.1.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },
