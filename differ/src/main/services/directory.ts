@@ -1,14 +1,15 @@
 import * as path from 'path'
-import { getAllFiles } from '../fs/directoryScanner'
+import { getAllFiles } from '../fs/directory'
 import { getFileHash, fileExists } from '../fs/file'
-import { loadIgnoreRules } from '../fs/ignore'
 import { FileCompareResult, FileStatus } from '../../shared/fileStatus'
+import { loadIgnoreConfig, getActiveIgnoreRules } from './ignore'
 
 export async function compareDirectories(
   baseDir: string,
   targetDir: string
 ): Promise<FileCompareResult[]> {
-  const ignoreRules = await loadIgnoreRules(baseDir)
+  const config = await loadIgnoreConfig()
+  const ignoreRules = getActiveIgnoreRules(config)
 
   const baseFiles = await getAllFiles(baseDir, baseDir, ignoreRules)
   const targetFiles = await getAllFiles(targetDir, targetDir, ignoreRules)

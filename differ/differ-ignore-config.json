@@ -1,0 +1,160 @@
+{
+  "patterns": [
+    {
+      "id": "1",
+      "type": "directory",
+      "pattern": "node_modules",
+      "enabled": true
+    },
+    {
+      "id": "2",
+      "type": "directory",
+      "pattern": "target",
+      "enabled": true
+    },
+    {
+      "id": "3",
+      "type": "directory",
+      "pattern": "dist",
+      "enabled": true
+    },
+    {
+      "id": "4",
+      "type": "directory",
+      "pattern": "out",
+      "enabled": true
+    },
+    {
+      "id": "5",
+      "type": "directory",
+      "pattern": "bin",
+      "enabled": true
+    },
+    {
+      "id": "6",
+      "type": "directory",
+      "pattern": "obj",
+      "enabled": true
+    },
+    {
+      "id": "7",
+      "type": "directory",
+      "pattern": ".settings",
+      "enabled": true
+    },
+    {
+      "id": "8",
+      "type": "directory",
+      "pattern": ".vs",
+      "enabled": true
+    },
+    {
+      "id": "9",
+      "type": "directory",
+      "pattern": ".idea",
+      "enabled": true
+    },
+    {
+      "id": "10",
+      "type": "extension",
+      "pattern": "class",
+      "enabled": true
+    },
+    {
+      "id": "11",
+      "type": "extension",
+      "pattern": "jar",
+      "enabled": true
+    },
+    {
+      "id": "12",
+      "type": "extension",
+      "pattern": "war",
+      "enabled": true
+    },
+    {
+      "id": "13",
+      "type": "extension",
+      "pattern": "ear",
+      "enabled": true
+    },
+    {
+      "id": "14",
+      "type": "extension",
+      "pattern": "iml",
+      "enabled": true
+    },
+    {
+      "id": "15",
+      "type": "extension",
+      "pattern": "project",
+      "enabled": true
+    },
+    {
+      "id": "16",
+      "type": "extension",
+      "pattern": "exe",
+      "enabled": true
+    },
+    {
+      "id": "17",
+      "type": "extension",
+      "pattern": "dll",
+      "enabled": true
+    },
+    {
+      "id": "18",
+      "type": "extension",
+      "pattern": "pdb",
+      "enabled": true
+    },
+    {
+      "id": "19",
+      "type": "extension",
+      "pattern": "user",
+      "enabled": true
+    },
+    {
+      "id": "20",
+      "type": "extension",
+      "pattern": "suo",
+      "enabled": true
+    },
+    {
+      "id": "21",
+      "type": "extension",
+      "pattern": "log",
+      "enabled": true
+    },
+    {
+      "id": "22",
+      "type": "extension",
+      "pattern": "lock",
+      "enabled": true
+    },
+    {
+      "id": "23",
+      "type": "extension",
+      "pattern": "tmp",
+      "enabled": true
+    },
+    {
+      "id": "24",
+      "type": "extension",
+      "pattern": "bak",
+      "enabled": true
+    },
+    {
+      "id": "1770551555262",
+      "type": "extension",
+      "pattern": "classpath",
+      "enabled": true
+    },
+    {
+      "id": "1770551706522",
+      "type": "extension",
+      "pattern": "md",
+      "enabled": true
+    }
+  ]
+}

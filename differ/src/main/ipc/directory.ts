@@ -1,5 +1,5 @@
 import { ipcMain } from 'electron'
-import { compareDirectories } from '../services/directoryCompare'
+import { compareDirectories } from '../services/directory'
 import { setCompareContext } from '../state/compareContext'
 
 export function registerDirectoryIpc() {

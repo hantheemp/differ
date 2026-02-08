@@ -15,6 +15,7 @@ export async function getFileHash(filePath: string): Promise<string> {
     const buffer = await fs.readFile(filePath)
 
     if (buffer.includes(0)) {
+
       return crypto.createHash('sha256').update(buffer).digest('hex')
     }
     
