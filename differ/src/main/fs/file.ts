@@ -12,7 +12,13 @@ export async function fileExists(filePath: string): Promise<boolean> {
 
 export async function getFileHash(filePath: string): Promise<string> {
   try {
-    const content = await fs.readFile(filePath)
+    const buffer = await fs.readFile(filePath)
+
+    if (buffer.includes(0)) {
+      return crypto.createHash('sha256').update(buffer).digest('hex')
+    }
+    
+    const content = buffer.toString('utf-8').replace(/\r\n/g, '\n')
     return crypto.createHash('sha256').update(content).digest('hex')
   } catch (error) {
     console.error(`Error hashing file ${filePath}:`, error)
@@ -21,7 +27,15 @@ export async function getFileHash(filePath: string): Promise<string> {
 }
 
 export async function readFile(filePath: string): Promise<Buffer> {
-  return fs.readFile(filePath)
+  return await fs.readFile(filePath)
+}
+
+export async function readFileAsText(filePath: string): Promise<string> {
+  const buffer = await fs.readFile(filePath)
+  if (buffer.includes(0)) {
+    return '[Binary file]'
+  }
+  return buffer.toString('utf-8')
 }
 
 export async function isDirectory(filePath: string): Promise<boolean> {

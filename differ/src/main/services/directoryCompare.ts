@@ -1,24 +1,22 @@
 import * as path from 'path'
 import { getAllFiles } from '../fs/directoryScanner'
-import { fileExists, getFileHash } from '../fs/file'
-import { FileStatus } from '../../shared/fileStatus'
-
-export type FileCompareResult = {
-  path: string
-  status: FileStatus
-}
+import { getFileHash, fileExists } from '../fs/file'
+import { loadIgnoreRules } from '../fs/ignore'
+import { FileCompareResult, FileStatus } from '../../shared/fileStatus'
 
 export async function compareDirectories(
   baseDir: string,
   targetDir: string
 ): Promise<FileCompareResult[]> {
-  const baseFiles = await getAllFiles(baseDir)
-  const targetFiles = await getAllFiles(targetDir)
+  const ignoreRules = await loadIgnoreRules(baseDir)
+
+  const baseFiles = await getAllFiles(baseDir, baseDir, ignoreRules)
+  const targetFiles = await getAllFiles(targetDir, targetDir, ignoreRules)
 
   const baseSet = new Set(baseFiles.map((p) => path.relative(baseDir, p)))
   const targetSet = new Set(targetFiles.map((p) => path.relative(targetDir, p)))
 
-  const allPaths = new Set<string>([...baseSet, ...targetSet])
+  const allPaths = new Set([...baseSet, ...targetSet])
 
   const results: FileCompareResult[] = []
 
@@ -29,31 +27,19 @@ export async function compareDirectories(
     const baseExists = await fileExists(basePath)
     const targetExists = await fileExists(targetPath)
 
-    if (!baseExists && targetExists) {
-      results.push({
-        path: relativePath,
-        status: 'added'
-      })
-      continue
+    let status: FileStatus
+
+    if (!baseExists && targetExists) status = 'added'
+    else if (baseExists && !targetExists) status = 'removed'
+    else {
+      const [baseHash, targetHash] = await Promise.all([
+        getFileHash(basePath),
+        getFileHash(targetPath)
+      ])
+      status = baseHash === targetHash ? 'unchanged' : 'modified'
     }
 
-    if (baseExists && !targetExists) {
-      results.push({
-        path: relativePath,
-        status: 'removed'
-      })
-      continue
-    }
-
-    const [baseHash, targetHash] = await Promise.all([
-      getFileHash(basePath),
-      getFileHash(targetPath)
-    ])
-
-    results.push({
-      path: relativePath,
-      status: baseHash === targetHash ? 'unchanged' : 'modified'
-    })
+    results.push({ path: relativePath, status })
   }
 
   return results

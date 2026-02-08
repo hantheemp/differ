@@ -1,17 +1,29 @@
 import { promises as fs } from 'fs'
 import * as path from 'path'
+import { IgnoreRules, shouldIgnore } from './ignore'
 
-export async function getAllFiles(directoryPath: string): Promise<string[]> {
-  const entries = await fs.readdir(directoryPath)
+export async function getAllFiles(
+  rootDir: string,
+  currentDir = rootDir,
+  ignoreRules: IgnoreRules
+): Promise<string[]> {
+  const entries = await fs.readdir(currentDir, { withFileTypes: true })
+  const results: string[] = []
 
-  const filePaths = await Promise.all(
-    entries.map(async (entry) => {
-      const fullPath = path.join(directoryPath, entry)
-      const stat = await fs.stat(fullPath)
+  for (const entry of entries) {
+    const fullPath = path.join(currentDir, entry.name)
+    const relativePath = path.relative(rootDir, fullPath)
 
-      return stat.isDirectory() ? getAllFiles(fullPath) : [fullPath]
-    })
-  )
+    if (shouldIgnore(relativePath, ignoreRules)) {
+      continue
+    }
 
-  return filePaths.flat()
+    if (entry.isDirectory()) {
+      results.push(...(await getAllFiles(rootDir, fullPath, ignoreRules)))
+    } else {
+      results.push(fullPath)
+    }
+  }
+
+  return results
 }

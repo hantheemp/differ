@@ -1,8 +1,10 @@
 import { useState } from 'react'
-import { FileCompareResult } from '../../../shared/fileStatus'
+import { FileCompareResult, DiffTreeNode } from 'src/shared/fileStatus'
+import { buildDiffTree } from '../utils/buildDiffTree'
 
 export function useDirectoryDiff() {
   const [results, setResults] = useState<FileCompareResult[]>([])
+  const [tree, setTree] = useState<DiffTreeNode[]>([])
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
 
@@ -12,7 +14,11 @@ export function useDirectoryDiff() {
       setError(null)
 
       const data = await window.api.compareDirectories(baseDir, targetDir)
-      setResults(data)
+
+      const meaningful = data.filter((d) => d.status !== 'unchanged')
+
+      setResults(meaningful)
+      setTree(buildDiffTree(meaningful))
     } catch (err) {
       setError('Directory comparison failed')
       console.error(err)
@@ -23,6 +29,7 @@ export function useDirectoryDiff() {
 
   return {
     results,
+    tree,
     loading,
     error,
     compare

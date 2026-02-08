@@ -1,6 +1,9 @@
 import { contextBridge, ipcRenderer } from 'electron'
 
 contextBridge.exposeInMainWorld('api', {
-  compareDirectories: (baseDir: string, targetDir: string) =>
-    ipcRenderer.invoke('compare-directories', baseDir, targetDir)
+  compareDirectories: (base: string, target: string) =>
+    ipcRenderer.invoke('compare-directories', base, target),
+
+  readFile: (relativePath: string, side: 'base' | 'target') =>
+    ipcRenderer.invoke('read-file', relativePath, side)
 })

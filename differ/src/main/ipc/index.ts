@@ -1,5 +1,7 @@
-import { registerCompareIpc } from './directoryCompare'
+import { registerDirectoryIpc } from './directory'
+import { registerFileIpc } from './file'
 
 export function registerIpcHandlers() {
-  registerCompareIpc()
+  registerDirectoryIpc()
+  registerFileIpc()
 }

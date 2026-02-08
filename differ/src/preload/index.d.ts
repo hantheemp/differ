@@ -5,6 +5,7 @@ declare global {
     electron: ElectronAPI
     api: {
       compareDirectories: (base: string, target: string) => Promise<FileCompareResult[]>
+      readFile: (path: string, side: 'base' | 'target') => Promise<string>
     }
   }
 }

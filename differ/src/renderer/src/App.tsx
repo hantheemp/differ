@@ -1,27 +1,25 @@
+import { useEffect, useState } from 'react'
+import FileTree from './components/FileTree'
+import MonacoViewer from './components/MonacoViewer'
 import { useDirectoryDiff } from './hooks/useDirectoryDiff'
+import { DiffTreeNode } from 'src/shared/fileStatus'
 
 function App(): React.JSX.Element {
-  const { results, compare, loading } = useDirectoryDiff()
+  const { tree, compare } = useDirectoryDiff()
+  const [selected, setSelected] = useState<DiffTreeNode | null>(null)
+
+  useEffect(() => {
+    compare('C:/Users/temel/Desktop/testFiles/old', 'C:/Users/temel/Desktop/testFiles/new')
+  }, [])
+
   return (
-    <div className="bg-base-300 h-screen w-screen p-4">
-      <div className="p-4 text-sm">
-        <button
-          onClick={() =>
-            compare('C:/Users/temel/Desktop/testFiles/old', 'C:/Users/temel/Desktop/testFiles/new')
-          }
-        >
-          Compare
-        </button>
+    <div className="h-screen w-screen flex bg-base-300">
+      <div className="w-1/4 border-r p-2 overflow-auto">
+        <FileTree nodes={tree} onSelect={setSelected} />
+      </div>
 
-        {loading && <p>Loading...</p>}
-
-        <ul>
-          {results.map((r) => (
-            <li key={r.path}>
-              {r.path} — {r.status}
-            </li>
-          ))}
-        </ul>
+      <div className="flex-1">
+        <MonacoViewer node={selected} />
       </div>
     </div>
   )
