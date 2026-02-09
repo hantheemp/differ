@@ -56,7 +56,6 @@ export default function IgnoreSettings() {
               </button>
             </div>
 
-            {/* Add new pattern */}
             <div className="mb-4 p-3 bg-gray-900 rounded-md">
               <div className="flex gap-2 mb-2">
                 <select
