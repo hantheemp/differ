@@ -144,7 +144,7 @@ export default function IgnoreSettings() {
 
             <div className="mt-4 pt-3 border-t border-gray-700">
               <p className="text-xs text-gray-400">
-                💡 Patterns are applied to both directories. Changes trigger automatic
+                Patterns are applied to both directories. Changes trigger automatic
                 re-comparison.
               </p>
             </div>
