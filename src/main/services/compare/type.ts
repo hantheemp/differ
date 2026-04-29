@@ -12,3 +12,12 @@ interface FileNode {
   modifiedPath: string | null
   isDirectory: boolean
 }
+
+interface CompareResult {
+  files: FileNode[]
+  totalFiles: number
+  totalAdded: number
+  totalRemoved: number
+  totalModified: number
+  totalUnmodified: number
+}

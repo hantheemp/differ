@@ -1,4 +1,4 @@
-export interface ComparedFile {
+export interface FileNode {
   id: string
   name: string
   relativePath: string
@@ -6,4 +6,13 @@ export interface ComparedFile {
   originalPath: string | null
   modifiedPath: string | null
   isDirectory: boolean
+}
+
+interface CompareResult {
+  files: FileNode[]
+  totalFiles: number
+  totalAdded: number
+  totalRemoved: number
+  totalModified: number
+  totalUnmodified: number
 }
