@@ -1,6 +1,7 @@
 import { compare as dirCompare } from 'dir-compare'
 import path from 'path'
 import crypto from 'crypto'
+import { monacoCompatibleCompare } from './compareFileAsync'
 
 export async function compare({
   baselineDirectory,
@@ -14,7 +15,8 @@ export async function compare({
       compareDate: false,
       ignoreLineEnding: true,
       ignoreWhiteSpaces: true,
-      excludeFilter: excludeFilter
+      excludeFilter: excludeFilter,
+      compareFileAsync: monacoCompatibleCompare.compareAsync
     })
 
     if (!res.diffSet || res.same) {

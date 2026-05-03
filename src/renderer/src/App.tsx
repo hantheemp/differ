@@ -32,7 +32,7 @@ export default function App(): React.JSX.Element {
         </div>
       </div>
 
-      <Footer status="ready" />
+      <Footer />
     </div>
   )
 }
