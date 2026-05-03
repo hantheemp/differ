@@ -9,9 +9,11 @@ export async function compare({
 }: CompareInputProps): Promise<CompareResult> {
   try {
     const res = await dirCompare(baselineDirectory, targetDirectory, {
-      compareSize: true,
       compareContent: true,
-      compareDate: true,
+      compareSize: false,
+      compareDate: false,
+      ignoreLineEnding: true,
+      ignoreWhiteSpaces: true,
       excludeFilter: excludeFilter
     })
 

@@ -9,14 +9,15 @@ export default function DiffView({
 }: DiffViewProps): React.JSX.Element {
   return (
     <DiffEditor
-    height="100%"
+      height="100%"
       original={origin}
       modified={modified}
       language={language}
       theme={theme}
       options={{
         automaticLayout: true,
-        minimap: { enabled: true, showSlider: 'always' }
+        minimap: { enabled: true, showSlider: 'always' },
+        ignoreTrimWhitespace: true
       }}
     />
   )

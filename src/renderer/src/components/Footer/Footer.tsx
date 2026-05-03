@@ -1,24 +1,24 @@
-import { useCompareStore } from "@renderer/store/CompareStore/useCompareStore";
+import React from 'react'
+import useCompare from '@renderer/hooks/useCompare'
+import { useCompareStore } from '@renderer/store/CompareStore/useCompareStore'
+import { statusConfig } from './config'
+import { FooterStatus } from './type'
 
-const statusConfig: Record<FooterStatus, { label: string; color: string; glow: string }> = {
-  initial: {
-    label: '',
-    color: 'bg-gray-500',
-    glow: 'shadow-[0_0_8px_rgba(107,114,128,0.6)]'
-  },
-  ready: { label: 'Ready', color: 'bg-green-500', glow: 'shadow-[0_0_8px_rgba(34,197,94,0.6)]' },
-  processing: {
-    label: 'Processing',
-    color: 'bg-yellow-400',
-    glow: 'shadow-[0_0_8px_rgba(250,204,21,0.6)]'
-  },
-  failed: { label: 'Failed', color: 'bg-red-500', glow: 'shadow-[0_0_8px_rgba(239,68,68,0.6)]' }
-}
-
-export default function Footer({ status }: FooterProps): React.JSX.Element {
-  const { label, color, glow } = statusConfig[status]
-
+export default function Footer(): React.JSX.Element {
+  const { loading, error } = useCompare()
   const durationMs = useCompareStore((state) => state.compareTime)
+
+  let status: FooterStatus = 'initial'
+
+  if (loading) {
+    status = 'processing'
+  } else if (error) {
+    status = 'failed'
+  } else if (durationMs) {
+    status = 'ready'
+  }
+
+  const { label, color, glow } = statusConfig[status]
 
   return (
     <footer className="h-8 grid grid-cols-3 items-center px-4 bg-surface-dark border-t border-border-dark shrink-0">
@@ -27,7 +27,8 @@ export default function Footer({ status }: FooterProps): React.JSX.Element {
           <span className={`block size-2 rounded-full ${color} ${glow}`} />
           {label}
         </span>
-        {status !== 'initial' && status !== 'processing' && durationMs !== undefined && (
+
+        {status === 'ready' && durationMs && (
           <>
             <span className="text-slate-500">|</span>
             <span className="text-slate-500">Diff complete in {durationMs}ms</span>

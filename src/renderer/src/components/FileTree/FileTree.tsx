@@ -3,13 +3,13 @@ import useCompare from '@renderer/hooks/useCompare'
 import File from '../File/File'
 import { useCompareStore } from '@renderer/store/CompareStore/useCompareStore'
 import { useDirectoryStore } from '@renderer/store/DirectoryStore/useDirectoryStore'
+import { useEditorStore } from '@renderer/store/EditorStore/useEditorStore'
 
 export default function FileTree(): React.JSX.Element {
   const { result, loading, error, compare } = useCompare()
-
-   const { totalAdded, totalRemoved, totalModified, totalUnmodified }= useCompareStore((state) => state)
-
-   const { baselinePath, targetPath, trigger } = useDirectoryStore()
+  const { totalAdded, totalRemoved, totalModified } = useCompareStore((state) => state)
+  const { baselinePath, targetPath, trigger } = useDirectoryStore()
+  const openFile = useEditorStore((state) => state.openFile)
 
   useEffect(() => {
     if (baselinePath && targetPath && trigger > 0) {
@@ -17,10 +17,8 @@ export default function FileTree(): React.JSX.Element {
     }
   }, [trigger])
 
-  if (loading) return <p>Loading...</p>
-  if (error) return <p>{error}</p>
-
-  console.log(result)
+  if (loading) return <p className="p-4 text-slate-400">Loading...</p>
+  if (error) return <p className="p-4 text-red-400">{error}</p>
 
   return (
     <aside className="w-72 bg-surface-dark border-r border-border-dark flex flex-col shrink-0 h-full">
@@ -40,7 +38,11 @@ export default function FileTree(): React.JSX.Element {
       </div>
       <div className="overflow-y-auto flex-1 p-2 space-y-0.5">
         {result.files.map((file) => (
-          !file.isDirectory && <File key={file.id} fileName={file.name} status={file.status} />
+          !file.isDirectory && (
+            <div key={file.id} onClick={() => openFile(file)} className="cursor-pointer">
+              <File fileName={file.name} status={file.status} />
+            </div>
+          )
         ))}
       </div>
     </aside>

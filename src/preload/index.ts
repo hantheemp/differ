@@ -6,7 +6,9 @@ const api = {
   compare: async (baselineDirectory: string, targetDirectory: string) => {
     return ipcRenderer.invoke('compare', baselineDirectory, targetDirectory)
   },
-  selectDirectory: () => ipcRenderer.invoke('selectDirectory')
+  selectDirectory: () => ipcRenderer.invoke('selectDirectory'),
+  doesFileExist: (filePath: string) => ipcRenderer.invoke('doesFileExist', filePath),
+  readFile: (filePath: string) => ipcRenderer.invoke('readFile', filePath)
 }
 
 // Use `contextBridge` APIs to expose Electron APIs to

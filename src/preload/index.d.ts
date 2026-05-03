@@ -6,6 +6,8 @@ declare global {
     api: {
       compare: (baselineDirectory: string, targetDirectory: string) => Promise<CompareResult>
       selectDirectory: () => Promise<string | null>
+      doesFileExist: (filePath: string) => Promise<boolean>
+      readFile: (filePath: string) => Promise<string>
     }
   }
 }
