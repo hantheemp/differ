@@ -20,6 +20,8 @@ export default function FileTree(): React.JSX.Element {
   if (loading) return <p>Loading...</p>
   if (error) return <p>{error}</p>
 
+  console.log(result)
+
   return (
     <aside className="w-72 bg-surface-dark border-r border-border-dark flex flex-col shrink-0 h-full">
       <div className="p-3 border-b border-border-dark flex justify-between items-center">
