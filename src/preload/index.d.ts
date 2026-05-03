@@ -4,7 +4,8 @@ declare global {
   interface Window {
     electron: ElectronAPI
     api: {
-      compare: (baselineDirectory: string, targetDirectory: string) => Promise<CompareResult[]>
+      compare: (baselineDirectory: string, targetDirectory: string) => Promise<CompareResult>
+      selectDirectory: () => Promise<string | null>
     }
   }
 }

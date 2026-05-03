@@ -11,7 +11,7 @@ export default function App(): React.JSX.Element {
       <Navbar />
       <Directory />
       <div className="flex flex-row gap-4 p-4 flex-1 overflow-hidden">
-        <FileTree added={3} removed={1} modified={2} />
+        <FileTree/>
         <DiffView
           origin="console.log('Hello, World!');"
           modified="console.log('Hello, Universe!');"

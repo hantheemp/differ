@@ -4,4 +4,5 @@ interface ButtonProps {
   onClick: () => void
   className?: string
   variant?: 'default' | 'primary'
+  disabled?: boolean
 }

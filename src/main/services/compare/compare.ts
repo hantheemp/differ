@@ -64,7 +64,7 @@ export async function compare({
     const totalFiles = totalAdded + totalRemoved + totalModified + totalUnmodified
 
     return {
-      files: mappedFiles,
+      files: mappedFiles.sort((a, b) => a.status.localeCompare(b.status)),
       totalFiles,
       totalAdded,
       totalRemoved,

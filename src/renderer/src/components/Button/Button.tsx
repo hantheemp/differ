@@ -3,7 +3,8 @@ export default function Button({
   logo,
   onClick,
   className = '',
-  variant = 'default'
+  variant = 'default',
+  disabled = false
 }: ButtonProps): React.JSX.Element {
   const base =
     variant === 'primary'
@@ -11,7 +12,7 @@ export default function Button({
       : 'text-slate-400 hover:text-white transition-colors text-sm font-medium flex items-center justify-center'
 
   return (
-    <button onClick={onClick} className={`${base} ${className}`}>
+    <button disabled={disabled} onClick={onClick} className={`${base} ${className}`}>
       {logo && <span className="flex items-center justify-center">{logo}</span>}
     </button>
   )

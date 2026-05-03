@@ -3,9 +3,10 @@ import { electronAPI } from '@electron-toolkit/preload'
 
 // Custom APIs for renderer
 const api = {
-  compare : async (baselineDirectory : string, targetDirectory : string) => {
-     return ipcRenderer.invoke('compare', baselineDirectory, targetDirectory)
-  }
+  compare: async (baselineDirectory: string, targetDirectory: string) => {
+    return ipcRenderer.invoke('compare', baselineDirectory, targetDirectory)
+  },
+  selectDirectory: () => ipcRenderer.invoke('selectDirectory')
 }
 
 // Use `contextBridge` APIs to expose Electron APIs to

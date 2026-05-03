@@ -1,3 +1,5 @@
+import { useCompareStore } from "@renderer/store/CompareStore/useCompareStore";
+
 const statusConfig: Record<FooterStatus, { label: string; color: string; glow: string }> = {
   initial: {
     label: '',
@@ -13,8 +15,10 @@ const statusConfig: Record<FooterStatus, { label: string; color: string; glow: s
   failed: { label: 'Failed', color: 'bg-red-500', glow: 'shadow-[0_0_8px_rgba(239,68,68,0.6)]' }
 }
 
-export default function Footer({ status, durationMs }: FooterProps): React.JSX.Element {
+export default function Footer({ status }: FooterProps): React.JSX.Element {
   const { label, color, glow } = statusConfig[status]
+
+  const durationMs = useCompareStore((state) => state.compareTime)
 
   return (
     <footer className="h-8 grid grid-cols-3 items-center px-4 bg-surface-dark border-t border-border-dark shrink-0">

@@ -29,7 +29,8 @@
     "lucide-react": "^1.11.0",
     "monaco-editor": "^0.55.1",
     "react-arborist": "^3.5.0",
-    "tailwindcss": "^4.2.4"
+    "tailwindcss": "^4.2.4",
+    "zustand": "^5.0.12"
   },
   "devDependencies": {
     "@electron-toolkit/eslint-config-prettier": "^3.0.0",

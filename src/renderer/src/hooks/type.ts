@@ -8,11 +8,6 @@ export interface FileNode {
   isDirectory: boolean
 }
 
-interface CompareResult {
+export interface CompareResult {
   files: FileNode[]
-  totalFiles: number
-  totalAdded: number
-  totalRemoved: number
-  totalModified: number
-  totalUnmodified: number
 }
