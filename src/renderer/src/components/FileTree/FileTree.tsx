@@ -38,7 +38,7 @@ export default function FileTree(): React.JSX.Element {
       </div>
       <div className="overflow-y-auto flex-1 p-2 space-y-0.5">
         {result.files.map((file) => (
-          !file.isDirectory && (
+          !file.isDirectory && file.status !== 'unmodified' && (
             <div key={file.id} onClick={() => openFile(file)} className="cursor-pointer">
               <File fileName={file.name} status={file.status} />
             </div>

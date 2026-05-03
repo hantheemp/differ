@@ -61,19 +61,15 @@ export async function compare({
       }
     })
 
-    const totalAdded = res.rightFiles ?? 0
-    const totalRemoved = res.leftFiles ?? 0
-    const totalModified = res.distinctFiles ?? 0
-    const totalUnmodified = res.equalFiles ?? 0
-    const totalFiles = totalAdded + totalRemoved + totalModified + totalUnmodified
+    const visibleFiles = mappedFiles.filter((f) => !f.isDirectory)
 
     return {
       files: mappedFiles.sort((a, b) => a.status.localeCompare(b.status)),
-      totalFiles,
-      totalAdded,
-      totalRemoved,
-      totalModified,
-      totalUnmodified
+      totalFiles: visibleFiles.length,
+      totalAdded: visibleFiles.filter((f) => f.status === 'added').length,
+      totalRemoved: visibleFiles.filter((f) => f.status === 'removed').length,
+      totalModified: visibleFiles.filter((f) => f.status === 'modified').length,
+      totalUnmodified: visibleFiles.filter((f) => f.status === 'unmodified').length
     }
   } catch (error: any) {
     console.error('Error occured while comparing directories:', error)
