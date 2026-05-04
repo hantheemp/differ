@@ -1,6 +1,6 @@
 export interface FilterRule {
     uuid : string
-    extension?: string
-    directory?: string
+    extension: string | null
+    directory: string | null
     insertedAt: Date
 }
