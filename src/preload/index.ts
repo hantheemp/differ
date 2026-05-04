@@ -8,7 +8,9 @@ const api = {
   },
   selectDirectory: () => ipcRenderer.invoke('selectDirectory'),
   doesFileExist: (filePath: string) => ipcRenderer.invoke('doesFileExist', filePath),
-  readFile: (filePath: string) => ipcRenderer.invoke('readFile', filePath)
+  readFile: (filePath: string) => ipcRenderer.invoke('readFile', filePath),
+  loadFilters: () => ipcRenderer.invoke('loadFilters'),
+  saveFilters: (filters) => ipcRenderer.invoke('saveFilters', filters)
 }
 
 // Use `contextBridge` APIs to expose Electron APIs to

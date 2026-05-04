@@ -1,4 +1,5 @@
 import { create } from 'zustand'
+import { SettingsState } from './type'
 
 export const useSettingsStore = create<SettingsState>((set) => ({
   isOpen: false,

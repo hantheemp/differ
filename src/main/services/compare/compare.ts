@@ -1,26 +1,37 @@
 import { compare as dirCompare } from 'dir-compare'
 import path from 'path'
 import crypto from 'crypto'
-import { monacoCompatibleCompare } from './compareFileAsync'
+import { getFormattedExcludeFilter, loadFiltersFromFile } from '../filter/filter'
+import fs from 'fs'
 
 export async function compare({
   baselineDirectory,
-  targetDirectory,
-  excludeFilter
+  targetDirectory
 }: CompareInputProps): Promise<CompareResult> {
   try {
+    const currentFilters = await loadFiltersFromFile()
+
+    const excludeFilterString = getFormattedExcludeFilter(currentFilters)
+
     const res = await dirCompare(baselineDirectory, targetDirectory, {
       compareContent: true,
       compareSize: false,
       compareDate: false,
-      ignoreLineEnding: true,
-      ignoreWhiteSpaces: true,
-      excludeFilter: excludeFilter,
-      compareFileAsync: monacoCompatibleCompare.compareAsync
+      compareFileAsync: async (path1, _stat1, path2, _stat2) => {
+        const normalize = (filePath: string) =>
+          fs
+            .readFileSync(filePath, 'utf-8')
+            .split(/\r?\n/)
+            .map((line) => line.trimEnd())
+            .join('\n')
+            .trim()
+
+        return normalize(path1) === normalize(path2)
+      },
+      excludeFilter: excludeFilterString
     })
 
     if (!res.diffSet || res.same) {
-      console.log('No differences found.')
       return {
         files: [],
         totalFiles: 0,

@@ -8,6 +8,8 @@ declare global {
       selectDirectory: () => Promise<string | null>
       doesFileExist: (filePath: string) => Promise<boolean>
       readFile: (filePath: string) => Promise<string>
+      loadFilters: () => Promise<FilterRule[]>
+      saveFilters: (filters: FilterRule[]) => Promise<void>
     }
   }
 }
