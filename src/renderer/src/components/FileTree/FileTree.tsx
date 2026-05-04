@@ -10,6 +10,7 @@ export default function FileTree(): React.JSX.Element {
   const { totalAdded, totalRemoved, totalModified } = useCompareStore((state) => state)
   const { baselinePath, targetPath, trigger } = useDirectoryStore()
   const openFile = useEditorStore((state) => state.openFile)
+  const activeFile = useEditorStore((state) => state.activeFile)
 
   useEffect(() => {
     if (baselinePath && targetPath && trigger > 0) {
@@ -21,7 +22,7 @@ export default function FileTree(): React.JSX.Element {
   if (error) return <p className="p-4 text-red-400">{error}</p>
 
   return (
-    <aside className="w-72 bg-surface-dark border-r border-border-dark flex flex-col shrink-0 h-full">
+    <aside className="resize-x overflow-auto min-w-60 max-w-lg w-96 bg-surface-dark border-r border-border-dark flex flex-col shrink-0 h-full">
       <div className="p-3 border-b border-border-dark flex justify-between items-center">
         <h3 className="text-sm font-semibold text-slate-300">Changed Files</h3>
         <div className="flex gap-1">
@@ -37,13 +38,19 @@ export default function FileTree(): React.JSX.Element {
         </div>
       </div>
       <div className="overflow-y-auto flex-1 p-2 space-y-0.5">
-        {result.files.map((file) => (
-          !file.isDirectory && file.status !== 'unmodified' && (
-            <div key={file.id} onClick={() => openFile(file)} className="cursor-pointer">
-              <File fileName={file.name} status={file.status} />
-            </div>
-          )
-        ))}
+        {result.files.map(
+          (file) =>
+            !file.isDirectory &&
+            file.status !== 'unmodified' && (
+              <div key={file.id} onClick={() => openFile(file)} className="cursor-pointer">
+                <File
+                  fileName={file.name}
+                  status={file.status}
+                  isActive={activeFile?.id === file.id}
+                />
+              </div>
+            )
+        )}
       </div>
     </aside>
   )

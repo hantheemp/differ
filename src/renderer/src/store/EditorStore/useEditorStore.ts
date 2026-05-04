@@ -1,16 +1,18 @@
 import { getLanguageFromFilename } from '@renderer/components/utils/monaco/monacoExtensions'
 import { create } from 'zustand'
 import { EditorState } from './type'
+import { FileNode } from '@renderer/hooks/type'
 
 export const useEditorStore = create<EditorState>((set) => ({
   originalContent: '',
   modifiedContent: '',
   language: 'plaintext',
   isLoadingContent: false,
+  activeFile: null,
 
-  openFile: async (file) => {
+  openFile: async (file : FileNode) => {
 
-    set({ isLoadingContent: true, language: getLanguageFromFilename(file.name) })
+    set({ isLoadingContent: true, language: getLanguageFromFilename(file.name), activeFile: file })
 
     let original = ''
     let modified = ''

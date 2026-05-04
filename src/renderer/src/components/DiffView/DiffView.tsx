@@ -38,7 +38,9 @@ export default function DiffView({
       options={{
         automaticLayout: true,
         minimap: { enabled: true, showSlider: 'always' },
-        ignoreTrimWhitespace: true
+        ignoreTrimWhitespace: true,
+        originalEditable: false,
+        readOnly: true
       }}
     />
   )
