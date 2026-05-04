@@ -2,23 +2,9 @@ import { FilterRule } from './type'
 import path from 'path'
 import { app } from 'electron'
 import { promises } from 'fs'
+import { DEFAULT_FILTERS } from './config'
 
 const FILTERS_FILE_PATH = path.join(app.getPath('userData'), 'filters.json')
-
-const DEFAULT_FILTERS: FilterRule[] = [
-  {
-    uuid: crypto.randomUUID(),
-    extension: '.log',
-    directory: null,
-    insertedAt: new Date()
-  },
-  {
-    uuid: crypto.randomUUID(),
-    extension: null,
-    directory: 'node_modules',
-    insertedAt: new Date()
-  }
-]
 
 async function ensureFiltersFile(): Promise<void> {
   try {
