@@ -4,8 +4,6 @@ import { X } from 'lucide-react'
 export default function Settings(): React.JSX.Element | null {
   const { isOpen, closeSettings } = useSettingsStore()
 
-  
-
   if (!isOpen) return null
 
   return (
@@ -27,10 +25,6 @@ export default function Settings(): React.JSX.Element | null {
             <option>Light</option>
             <option>Dark</option>
           </select>
-        </div>
-        <div className="flex flex-row items-center justify-between mb-2">
-          <label className="block text-sm font-bold text-slate-400">Invert Diff View</label>
-          <input type="checkbox" className="form-checkbox h-5 w-5 text-blue-600" />
         </div>
         <div className="flex flex-row items-center justify-between mb-2">
           <label className="block text-sm font-bold text-slate-400">Enable Ignore</label>
