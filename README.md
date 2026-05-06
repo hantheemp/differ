@@ -61,4 +61,4 @@ The compiled files will be located in the dist or release folder depending on yo
 6. Select the changed files from the file tree on the left to examine the line-by-line differences in the editor on the right.
 
 ## License
-See LICENSE for details.
+See [LICENSE](https://github.com/hantheemp/differ/blob/main/LICENSE) for details.
